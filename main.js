@@ -1,19 +1,21 @@
+// Basic Vertex Shader Source Code
+var vertexShaderCode = '\
+    attribute vec3 vertexPosition; \
+    attribute vec3 vertexColour; \
+    varying vec3 fragmentColour; \
+    void main(void) { \
+        gl_Position = vec4(vertexPosition, 1.0); \
+        fragmentColour = vertexColour; \
+    }';
+// Basic Fragment Shader Source Code
+var fragmentShaderCode = '\
+    precision mediump float; \
+    varying vec3 fragmentColour; \
+    void main(void) { \
+        gl_FragColor = vec4(fragmentColour, 1.); \
+    }';
+
 function main() {
-    // Shader Source Code
-    let vertexShaderCode = '\
-        attribute vec3 vertexPosition; \
-        attribute vec3 vertexColour; \
-        varying vec3 fragmentColour; \
-        void main(void) { \
-            gl_Position = vec4(vertexPosition, 1.0); \
-            fragmentColour = vertexColour; \
-        }';
-    let fragmentShaderCode = '\
-        precision mediump float; \
-        varying vec3 fragmentColour; \
-        void main(void) { \
-            gl_FragColor = vec4(fragmentColour, 1.); \
-        }';
     // Prep the canvas and get our webgl context
     let canvas = document.getElementById('main-canvas')
     let webgl = canvas.getContext('experimental-webgl');
