@@ -6,6 +6,7 @@ class Engine {
     constructor() {
         this.shaderRegister = []                // A register of all the shaders
         this.renderableObjectRegister = []      // A register of all the renderable objects
+        this.oldTime = 0;
     }
 
     // Load the shaders
@@ -61,8 +62,10 @@ class Engine {
 
     // Engine "Game-Loop"
     sceneLoop = (timestamp) => {
-        this.updateScene(timestamp);
+        let deltaTime = (timestamp - this.oldTime) / 1000;
+        this.updateScene(deltaTime);
         this.renderScene();
+        this.oldTime = timestamp;
         window.requestAnimationFrame(this.sceneLoop);
     }
 
