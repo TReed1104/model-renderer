@@ -90,6 +90,7 @@ class Engine {
 
     // Engine Update
     updateScene(deltaTime) {
+        // Update all the objects
         this.renderableObjectRegister.forEach(renderable => {
             renderable.update(deltaTime);
         });
