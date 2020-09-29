@@ -27,6 +27,12 @@ function main() {
     let vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
     webgl.shaderSource(vertexShader, vertexShaderCode);
     webgl.compileShader(vertexShader);
+
+    // Create and compile the Fragment Shader
+    let fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
+    webgl.shaderSource(fragmentShader, fragmentShaderCode);
+    webgl.compileShader(fragmentShader);
+
 }
 
 main();
