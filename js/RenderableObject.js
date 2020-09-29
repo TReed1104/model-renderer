@@ -1,6 +1,11 @@
 // Renderable Object Class Definition
 class RenderableObject {
-    constructor(shader, vertices, indices, colour) {
+    constructor(id, vertices, indices, colour) {
+        // Identifier for the object
+        this.id = id
+
+        // Index in the shader register of the shader for this object
+        this.shaderIndex = 0;
         this.vertices = vertices;
         this.indices = indices;
         this.colours = colour;
