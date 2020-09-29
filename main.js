@@ -1,15 +1,19 @@
 function main() {
     // Shader Source Code
-    var vertexShaderCode = '\
-        attribute vec2 coordinates; \
+    let vertexShaderCode = '\
+        attribute vec3 vertexPosition; \
+        attribute vec3 vertexColour; \
+        varying vec3 fragmentColour; \
         void main(void) { \
-            gl_Position = vec4(coordinates,0.0, 1.0); \
+            gl_Position = vec4(vertexPosition, 1.0); \
+            fragmentColour = vertexColour; \
         }';
-    var fragmentShaderCode = '\
+    let fragmentShaderCode = '\
+        precision mediump float; \
+        varying vec3 fragmentColour; \
         void main(void) { \
-            gl_FragColor = vec4(0.0, 0.0, 0.0, 0.1); \
+            gl_FragColor = vec4(fragmentColour, 1.); \
         }';
-
     // Prep the canvas and get our webgl context
     let canvas = document.getElementById('main-canvas')
     let webgl = canvas.getContext('experimental-webgl');
