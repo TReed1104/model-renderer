@@ -16,8 +16,11 @@ class Engine {
         attribute vec3 vertexPosition; \
         attribute vec3 vertexColour; \
         varying vec3 fragmentColour; \
+        uniform mat4 pMatrix; \
+        uniform mat4 vMatrix; \
+        uniform mat4 mMatrix; \
         void main(void) { \
-            gl_Position = vec4(vertexPosition, 1.0); \
+            gl_Position = pMatrix * vMatrix * mMatrix * vec4(vertexPosition, 1.0); \
             fragmentColour = vertexColour; \
         }';
 
