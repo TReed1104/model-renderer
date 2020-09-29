@@ -44,6 +44,11 @@ class RenderableObject {
 
         // Setup the model matrix
         this.modelMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+        this.transformedModelMatrix = matrix4.translate(this.modelMatrix, this.position[0], this.position[1], this.position[2]);
+        this.transformedModelMatrix = matrix4.xRotate(this.transformedModelMatrix, this.rotationAngle[0]);
+        this.transformedModelMatrix = matrix4.yRotate(this.transformedModelMatrix, this.rotationAngle[1]);
+        this.transformedModelMatrix = matrix4.zRotate(this.transformedModelMatrix, this.rotationAngle[2]);
+        this.transformedModelMatrix = matrix4.scale(this.transformedModelMatrix, this.scale[0], this.scale[1], this.scale[2]);
     }
 
     update(deltaTime) {
