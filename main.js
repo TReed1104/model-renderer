@@ -18,31 +18,72 @@ function main() {
     let canvas = document.getElementById('main-canvas')
     let webgl = canvas.getContext('experimental-webgl');
 
-    // Vertices for a Square    
-    let squareVertices = [-0.5, 0.5, -0.5, -0.5, 0.0, -0.5,];
+    // Vertices
+    let vertices = [
+        -0.5, 0.5, 0.0,
+        -0.5, -0.5, 0.0,
+        0.5, -0.5, 0.0,
+        0.5, 0.5, 0.0
+    ];
+    // Indices
+    let indices = [3, 2, 1, 3, 1, 0];
+    // Colours
+    let colours = [0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1,];
 
-    // Create a new buffer object and bind it
+    // Create a new buffer for the vertices
     let vertexBuffer = webgl.createBuffer();
     webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
-    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(squareVertices), webgl.STATIC_DRAW);
+    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertices), webgl.STATIC_DRAW);
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+    // Create a new buffer for the indices
+    let indicesBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, indicesBuffer);
+    webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), webgl.STATIC_DRAW);
+    webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, null);
+    // Create a new buffer for the colour data
+    let colourBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, colourBuffer);
+    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(colours), webgl.STATIC_DRAW);
     webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
 
-    // Create and compile the Vertex Shader
+    // Compile the Vertex Shader
     let vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
     webgl.shaderSource(vertexShader, vertexShaderCode);
     webgl.compileShader(vertexShader);
-
-    // Create and compile the Fragment Shader
+    // Compile the Fragment Shader
     let fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
     webgl.shaderSource(fragmentShader, fragmentShaderCode);
     webgl.compileShader(fragmentShader);
-
-    // Create a shader program
+    // Link together the shader objects
     let shaderProgram = webgl.createProgram();
     webgl.attachShader(shaderProgram, vertexShader);
     webgl.attachShader(shaderProgram, fragmentShader);
     webgl.linkProgram(shaderProgram);
+
+    // Start a Render
+    webgl.viewport(0, 0, canvas.width, canvas.height);
+    webgl.clearColor(0.5, 0.5, 0.5, 0.9);
+    webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
     webgl.useProgram(shaderProgram);
+        webgl.enable(webgl.DEPTH_TEST);
+            webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
+                webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, indicesBuffer);
+                    // Get the attribute location for the coordinates
+                    let coordShaderLocation = webgl.getAttribLocation(shaderProgram, "vertexPosition");
+                    webgl.vertexAttribPointer(coordShaderLocation, 3, webgl.FLOAT, false, 0, 0);
+                    webgl.enableVertexAttribArray(coordShaderLocation);
+                    webgl.bindBuffer(webgl.ARRAY_BUFFER, colourBuffer);
+                        // Get the 
+                        let colourShaderLocation = webgl.getAttribLocation(shaderProgram, "vertexColour");
+                        webgl.vertexAttribPointer(colourShaderLocation, 3, webgl.FLOAT, false,0,0) ;
+                        webgl.enableVertexAttribArray(colourShaderLocation);
+                        // Draw the vertices
+                        webgl.drawElements(webgl.TRIANGLES, indices.length, webgl.UNSIGNED_SHORT, 0);
+                    webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+                webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, null);
+            webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+        webgl.disable(webgl.DEPTH_TEST);
+    webgl.useProgram(null);
 }
 
 main();
