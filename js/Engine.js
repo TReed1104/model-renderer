@@ -11,6 +11,15 @@ class Engine {
         this.projectionMatrix = matrix4.projection(40, canvas.width / canvas.height, 1, 100);
         this.viewMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
         this.viewMatrix[14] = this.viewMatrix[14] - 6;
+
+        // Mouse-Draw rotation
+        this.mouseDrag = false;
+        this.oldX = 0;
+        this.oldY = 0;
+        this.dX = 0;
+        this.dY = 0;
+        this.theta = 0;
+        this.phi = 0;
     }
 
     // Load the shaders
