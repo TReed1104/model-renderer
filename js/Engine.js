@@ -90,14 +90,6 @@ class Engine {
 
     // Engine Update
     updateScene(deltaTime) {
-        // Object drag rotation deceleration
-        if (!this.mouseDrag) {
-            this.dX *= 0.95;
-            this.dY *= 0.95;
-            this.theta += this.dX;
-            this.phi += this.dY;
-        }
-
         // Set the rotate of the main object
         this.renderableObjectRegister[0].rotationAngle[1] = this.theta;
         this.renderableObjectRegister[0].rotationAngle[0] = this.phi;
