@@ -19,6 +19,13 @@ var fragmentShaderCode = '\
         gl_FragColor = vec4(fragmentColour, 1.); \
     }';
 
+
+class RenderableObject {
+    constructor(shader, vertices, indices, colour) {
+    }
+
+}
+
 function compileShaderProgram(vertexSource, fragmentSource) {
     // Compile the Vertex Shader
     let vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
