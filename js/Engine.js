@@ -41,6 +41,9 @@ class Engine {
 
     // Engine Update
     updateScene(deltaTime) {
+        this.renderableObjectRegister.forEach(renderable => {
+            renderable.update(deltaTime);
+        });
     }
     
     // Engine Render
@@ -50,7 +53,9 @@ class Engine {
         webgl.clearColor(0.5, 0.5, 0.5, 0.9);
         webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
         webgl.enable(webgl.DEPTH_TEST);
-        this.renderableObjectRegister[0].draw(this.shaderRegister[0]);
+        this.renderableObjectRegister.forEach(renderable => {
+            renderable.draw(this.shaderRegister[0]);
+        });
         webgl.disable(webgl.DEPTH_TEST);
     }
 
