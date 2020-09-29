@@ -54,7 +54,7 @@ class Engine {
         webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
         webgl.enable(webgl.DEPTH_TEST);
         this.renderableObjectRegister.forEach(renderable => {
-            renderable.draw(this.shaderRegister[0]);
+            renderable.draw(this.shaderRegister[renderable.shaderIndex]);
         });
         webgl.disable(webgl.DEPTH_TEST);
     }
