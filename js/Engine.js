@@ -20,6 +20,12 @@ class Engine {
         this.dY = 0;
         this.theta = 0;
         this.phi = 0;
+
+        // Register the mouse events for the mouse drag object rotation
+        canvas.addEventListener("mousedown", this.mouseDown, false);
+        canvas.addEventListener("mouseup", this.mouseUp, false);
+        canvas.addEventListener("mouseout", this.mouseUp, false);
+        canvas.addEventListener("mousemove", this.mouseMove, false);
     }
 
     // Mouse movement function
