@@ -22,6 +22,30 @@ class Engine {
         this.phi = 0;
     }
 
+    // Mouse movement function
+    mouseDown = (event) =>{
+        this.mouseDrag = true;
+        this.oldX = event.pageX;
+        this.oldY = event.pageY;
+        event.preventDefault();
+    };
+
+    mouseUp = (event) => {
+        this.mouseDrag = false;
+    };
+
+    mouseMove = (event) => {
+        if (!this.mouseDrag)
+            return false;
+        this.dX = (event.pageX - this.oldX) * 2 * Math.PI / canvas.width;
+        this.dY = (event.pageY - this.oldY) * 2 * Math.PI / canvas.height;
+        this.theta += this.dX;
+        this.phi += this.dY;
+        this.oldX = event.pageX;
+        this.oldY = event.pageY;
+        event.preventDefault();
+    };
+
     // Load the shaders
     loadShaders() {
         // Basic Vertex Shader Source Code
