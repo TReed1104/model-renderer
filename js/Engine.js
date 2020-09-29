@@ -97,6 +97,11 @@ class Engine {
             this.theta += this.dX;
             this.phi += this.dY;
         }
+
+        // Set the rotate of the main object
+        this.renderableObjectRegister[0].rotationAngle[1] = this.theta;
+        this.renderableObjectRegister[0].rotationAngle[0] = this.phi;
+
         // Update all the objects
         this.renderableObjectRegister.forEach(renderable => {
             renderable.update(deltaTime);
