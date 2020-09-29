@@ -33,6 +33,12 @@ function main() {
     webgl.shaderSource(fragmentShader, fragmentShaderCode);
     webgl.compileShader(fragmentShader);
 
+    // Create a shader program
+    let shaderProgram = webgl.createProgram();
+    webgl.attachShader(shaderProgram, vertexShader);
+    webgl.attachShader(shaderProgram, fragmentShader);
+    webgl.linkProgram(shaderProgram);
+    webgl.useProgram(shaderProgram);
 }
 
 main();
