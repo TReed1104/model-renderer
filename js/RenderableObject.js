@@ -64,6 +64,7 @@ class RenderableObject {
         // Enable the shader for the object
         shader.enable()
         webgl.bindVertexArray(this.vao);
+        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "mMatrix"), false, this.transformedModelMatrix);
         // Render the object
         webgl.drawElements(webgl.TRIANGLES, this.indices.length, webgl.UNSIGNED_SHORT, 0);
         webgl.bindVertexArray(null);
