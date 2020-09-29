@@ -13,6 +13,9 @@ function main() {
     // Prep the canvas and get our webgl context
     let canvas = document.getElementById('main-canvas')
     let webgl = canvas.getContext('experimental-webgl');
+
+    // Vertices for a Square    
+    let squareVertices = [-0.5, 0.5, -0.5, -0.5, 0.0, -0.5,];
 }
 
 main();
