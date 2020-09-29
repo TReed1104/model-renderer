@@ -35,7 +35,7 @@ class Engine {
     // Load our renderable objects
     loadObjects() {
         // Create a basic GameObject
-        this.renderableObjectRegister.push(new RenderableObject(this.shaderRegister[0], [-0.5, 0.5, 0.0, -0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.5, 0.5, 0.0], [3, 2, 1, 3, 1, 0,], [0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1,]));
+        this.renderableObjectRegister.push(new RenderableObject("Colourful Quad", [-0.5, 0.5, 0.0, -0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.5, 0.5, 0.0], [3, 2, 1, 3, 1, 0,], [0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1,]));
     }
 
 
