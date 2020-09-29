@@ -7,6 +7,10 @@ class Engine {
         this.shaderRegister = []                // A register of all the shaders
         this.renderableObjectRegister = []      // A register of all the renderable objects
         this.oldTime = 0;
+
+        this.projectionMatrix = matrix4.projection(40, canvas.width / canvas.height, 1, 100);
+        this.viewMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+        this.viewMatrix[14] = this.viewMatrix[14] - 6;
     }
 
     // Load the shaders
