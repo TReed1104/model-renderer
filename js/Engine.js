@@ -45,14 +45,13 @@ class Engine {
         this.renderableObjectRegister.push(new RenderableObject("Colourful Cube", vertices, indices, colours));
     }
 
-
     // Engine Update
     updateScene(deltaTime) {
         this.renderableObjectRegister.forEach(renderable => {
             renderable.update(deltaTime);
         });
     }
-    
+
     // Engine Render
     renderScene() {
         // Start a Render
