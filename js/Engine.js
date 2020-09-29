@@ -90,7 +90,7 @@ class Engine {
 
     // Engine Update
     updateScene(deltaTime) {
-        // Object draw rotation
+        // Object drag rotation deceleration
         if (!this.mouseDrag) {
             this.dX *= 0.95;
             this.dY *= 0.95;
