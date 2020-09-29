@@ -22,6 +22,9 @@ var fragmentShaderCode = '\
 
 class RenderableObject {
     constructor(shader, vertices, indices, colour) {
+        this.vertices = vertices;
+        this.indices = indices;
+        this.colours = colour;
     }
 
 }
