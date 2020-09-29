@@ -46,7 +46,7 @@ class RenderableObject {
     update(deltaTime) {
     }
 
-    draw(shader) {
+    draw(shader, projectionMatrix, viewMatrix) {
         // Enable the shader for the object
         shader.enable()
         webgl.bindVertexArray(this.vao);
