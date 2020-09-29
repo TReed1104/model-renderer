@@ -1,3 +1,7 @@
+// Prep the canvas and get our webgl context
+var canvas = document.getElementById('main-canvas')
+var webgl = canvas.getContext('experimental-webgl');
+
 // Basic Vertex Shader Source Code
 var vertexShaderCode = '\
     attribute vec3 vertexPosition; \
@@ -32,10 +36,6 @@ function compileShaderProgram(vertexSource, fragmentSource) {
     // Return the created shaderProgram
     return shaderProgram
 }
-
-// Prep the canvas and get our webgl context
-var canvas = document.getElementById('main-canvas')
-var webgl = canvas.getContext('experimental-webgl');
 
 // Main function
 function main() {
