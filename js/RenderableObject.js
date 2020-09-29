@@ -15,7 +15,6 @@ class RenderableObject {
         // Create the Vertex array object for the object
         this.vao = webgl.createVertexArray();
         webgl.bindVertexArray(this.vao);
-
         // Create a new buffer for the vertices
         this.vertexBuffer = webgl.createBuffer();
         webgl.bindBuffer(webgl.ARRAY_BUFFER, this.vertexBuffer);
@@ -36,8 +35,12 @@ class RenderableObject {
         webgl.vertexAttribPointer(1, 3, webgl.FLOAT, false, 0, 0);
         webgl.enableVertexAttribArray(1);
         webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
-
         webgl.bindVertexArray(null);
+
+        // Setup the transformation data
+        this.position = [0, 0, 0]
+        this.rotationAngle = [0, 0, 0]
+        this.scale = [1, 1, 1]
     }
 
     update(deltaTime) {
