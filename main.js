@@ -22,6 +22,11 @@ function main() {
     webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
     webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(squareVertices), webgl.STATIC_DRAW);
     webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+
+    // Create and compile the Vertex Shader
+    let vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
+    webgl.shaderSource(vertexShader, vertexShaderCode);
+    webgl.compileShader(vertexShader);
 }
 
 main();
