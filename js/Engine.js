@@ -90,6 +90,13 @@ class Engine {
 
     // Engine Update
     updateScene(deltaTime) {
+        // Object draw rotation
+        if (!this.mouseDrag) {
+            this.dX *= 0.95;
+            this.dY *= 0.95;
+            this.theta += this.dX;
+            this.phi += this.dY;
+        }
         // Update all the objects
         this.renderableObjectRegister.forEach(renderable => {
             renderable.update(deltaTime);
