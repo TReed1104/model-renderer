@@ -15,11 +15,30 @@ var fragmentShaderCode = '\
         gl_FragColor = vec4(fragmentColour, 1.); \
     }';
 
-function main() {
-    // Prep the canvas and get our webgl context
-    let canvas = document.getElementById('main-canvas')
-    let webgl = canvas.getContext('experimental-webgl');
+function compileShaderProgram(vertexSource, fragmentSource) {
+    // Compile the Vertex Shader
+    let vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
+    webgl.shaderSource(vertexShader, vertexSource);
+    webgl.compileShader(vertexShader);
+    // Compile the Fragment Shader
+    let fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
+    webgl.shaderSource(fragmentShader, fragmentSource);
+    webgl.compileShader(fragmentShader);
+    // Link together the shader objects
+    let shaderProgram = webgl.createProgram();
+    webgl.attachShader(shaderProgram, vertexShader);
+    webgl.attachShader(shaderProgram, fragmentShader);
+    webgl.linkProgram(shaderProgram);
+    // Return the created shaderProgram
+    return shaderProgram
+}
 
+// Prep the canvas and get our webgl context
+var canvas = document.getElementById('main-canvas')
+var webgl = canvas.getContext('experimental-webgl');
+
+// Main function
+function main() {
     // Vertices
     let vertices = [
         -0.5, 0.5, 0.0,
@@ -48,35 +67,23 @@ function main() {
     webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(colours), webgl.STATIC_DRAW);
     webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
 
-    // Compile the Vertex Shader
-    let vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
-    webgl.shaderSource(vertexShader, vertexShaderCode);
-    webgl.compileShader(vertexShader);
-    // Compile the Fragment Shader
-    let fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
-    webgl.shaderSource(fragmentShader, fragmentShaderCode);
-    webgl.compileShader(fragmentShader);
-    // Link together the shader objects
-    let shaderProgram = webgl.createProgram();
-    webgl.attachShader(shaderProgram, vertexShader);
-    webgl.attachShader(shaderProgram, fragmentShader);
-    webgl.linkProgram(shaderProgram);
+    let basicShaderProgram = compileShaderProgram(vertexShaderCode, fragmentShaderCode);
 
     // Start a Render
     webgl.viewport(0, 0, canvas.width, canvas.height);
     webgl.clearColor(0.5, 0.5, 0.5, 0.9);
     webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
-    webgl.useProgram(shaderProgram);
+    webgl.useProgram(basicShaderProgram);
         webgl.enable(webgl.DEPTH_TEST);
             webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
                 webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, indicesBuffer);
                     // Get the attribute location for the coordinates
-                    let coordShaderLocation = webgl.getAttribLocation(shaderProgram, "vertexPosition");
+                    let coordShaderLocation = webgl.getAttribLocation(basicShaderProgram, "vertexPosition");
                     webgl.vertexAttribPointer(coordShaderLocation, 3, webgl.FLOAT, false, 0, 0);
                     webgl.enableVertexAttribArray(coordShaderLocation);
                     webgl.bindBuffer(webgl.ARRAY_BUFFER, colourBuffer);
                         // Get the 
-                        let colourShaderLocation = webgl.getAttribLocation(shaderProgram, "vertexColour");
+                        let colourShaderLocation = webgl.getAttribLocation(basicShaderProgram, "vertexColour");
                         webgl.vertexAttribPointer(colourShaderLocation, 3, webgl.FLOAT, false,0,0) ;
                         webgl.enableVertexAttribArray(colourShaderLocation);
                         // Draw the vertices
