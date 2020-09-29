@@ -12,44 +12,45 @@ class Engine {
         this.viewMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
         this.viewMatrix[14] = this.viewMatrix[14] - 6;
 
-        // Mouse-Draw rotation
-        this.mouseDrag = false;
-        this.oldX = 0;
-        this.oldY = 0;
-        this.dX = 0;
-        this.dY = 0;
-        this.theta = 0;
-        this.phi = 0;
+        // Variables for drag-rotating an object
+        this.indexOfDraggableObject = 0;
+        this.mouseClicked = false;
+        this.oldMouseXPos = 0;
+        this.oldMouseYPos = 0;
 
         // Register the mouse events for the mouse drag object rotation
-        canvas.addEventListener("mousedown", this.mouseDown, false);
-        canvas.addEventListener("mouseup", this.mouseUp, false);
-        canvas.addEventListener("mouseout", this.mouseUp, false);
-        canvas.addEventListener("mousemove", this.mouseMove, false);
+        canvas.addEventListener("mousedown", this.mouseButtonClicked, false);
+        canvas.addEventListener("mouseup", this.mouseButtonReleased, false);
+        canvas.addEventListener("mouseout", this.mouseButtonReleased, false);
+        canvas.addEventListener("mousemove", this.mouseMovement, false);
     }
 
     // Mouse movement function
-    mouseDown = (event) =>{
-        this.mouseDrag = true;
-        this.oldX = event.pageX;
-        this.oldY = event.pageY;
-        event.preventDefault();
+    mouseButtonClicked = (event) => {
+        // The mouse has been clicked, get the click location in orthogonal space
+        this.mouseClicked = true;
+        this.oldMouseXPos = event.pageX;
+        this.oldMouseYPos = event.pageY;
     };
 
-    mouseUp = (event) => {
-        this.mouseDrag = false;
+    mouseButtonReleased = (event) => {
+        // The mouse click has been released, stop the "drag" calculations
+        this.mouseClicked = false;
     };
 
-    mouseMove = (event) => {
-        if (!this.mouseDrag)
+    mouseMovement = (event) => {
+        // Check if the mouse is clicked
+        if (!this.mouseClicked) {
             return false;
-        this.dX = (event.pageX - this.oldX) * 2 * Math.PI / canvas.width;
-        this.dY = (event.pageY - this.oldY) * 2 * Math.PI / canvas.height;
-        this.theta += this.dX;
-        this.phi += this.dY;
-        this.oldX = event.pageX;
-        this.oldY = event.pageY;
-        event.preventDefault();
+        }
+
+        // Calculate the delta in the X and Y rotations in radians from the previous frame and add it to our rotational Angles of the object
+        this.renderableObjectRegister[this.indexOfDraggableObject].rotationAngle[1] += (event.pageX - this.oldMouseXPos) * 2 * Math.PI / canvas.width;
+        this.renderableObjectRegister[this.indexOfDraggableObject].rotationAngle[0] += (event.pageY - this.oldMouseYPos) * 2 * Math.PI / canvas.height;
+
+        // Set the old mouse position ready for the next frame
+        this.oldMouseXPos = event.pageX;
+        this.oldMouseYPos = event.pageY;
     };
 
     // Load the shaders
@@ -90,10 +91,6 @@ class Engine {
 
     // Engine Update
     updateScene(deltaTime) {
-        // Set the rotate of the main object
-        this.renderableObjectRegister[0].rotationAngle[1] = this.theta;
-        this.renderableObjectRegister[0].rotationAngle[0] = this.phi;
-
         // Update all the objects
         this.renderableObjectRegister.forEach(renderable => {
             renderable.update(deltaTime);
