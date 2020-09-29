@@ -25,6 +25,10 @@ class RenderableObject {
         this.vertices = vertices;
         this.indices = indices;
         this.colours = colour;
+
+        this.vao = webgl.createVertexArray();
+        webgl.bindVertexArray(this.vao);
+        webgl.bindVertexArray(null);
     }
 
 }
