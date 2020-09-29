@@ -1,6 +1,6 @@
 // Prep the canvas and get our webgl context
 var canvas = document.getElementById('main-canvas')
-var webgl = canvas.getContext('experimental-webgl');
+var webgl = canvas.getContext('webgl2');
 
 // Basic Vertex Shader Source Code
 var vertexShaderCode = '\
