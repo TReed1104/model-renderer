@@ -1,6 +1,6 @@
 // Renderable Object Class Definition
 class RenderableObject {
-    constructor(id, vertices, indices, colour) {
+    constructor(id, vertices, indices, colour, position, rotation, scale) {
         // Identifier for the object
         this.id = id
 
@@ -38,9 +38,9 @@ class RenderableObject {
         webgl.bindVertexArray(null);
 
         // Setup the transformation data
-        this.position = [0, 0, 0]
-        this.rotationAngle = [0, 0, 0]
-        this.scale = [1, 1, 1]
+        this.position = position
+        this.rotationAngle = rotation
+        this.scale = scale
 
         // Setup the model matrix
         this.modelMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
