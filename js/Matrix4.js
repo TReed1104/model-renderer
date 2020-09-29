@@ -1,4 +1,13 @@
 var matrix4 = {
+    projection: function(angle, aspect, zMin, zMax) {
+        var ang = Math.tan((angle * 0.5) * Math.PI / 180); //angle*0.5
+        return [
+            0.5 / ang, 0, 0, 0,
+            0, 0.5 * aspect / ang, 0, 0,
+            0, 0, -(zMax + zMin) / (zMax - zMin), -1,
+            0, 0, (-2 * zMax * zMin) / (zMax - zMin), 0
+        ];
+    },
     multiply: function (a, b) {
         var a00 = a[0 * 4 + 0];
         var a01 = a[0 * 4 + 1];
