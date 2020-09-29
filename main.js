@@ -78,6 +78,9 @@ function compileShaderProgram(vertexSource, fragmentSource) {
     return shaderProgram
 }
 
+function renderScene() {
+}
+
 // Main function
 function main() {
     let basicShaderProgram = compileShaderProgram(vertexShaderCode, fragmentShaderCode);
