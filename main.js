@@ -51,6 +51,13 @@ class RenderableObject {
         webgl.bindVertexArray(null);
     }
 
+    draw(shader) {
+        webgl.useProgram(shader);
+            webgl.bindVertexArray(this.vao);
+                webgl.drawElements(webgl.TRIANGLES, this.indices.length, webgl.UNSIGNED_SHORT, 0);
+            webgl.bindVertexArray(null);
+        webgl.useProgram(null);
+    }
 }
 
 function compileShaderProgram(vertexSource, fragmentSource) {
