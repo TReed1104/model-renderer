@@ -16,6 +16,12 @@ function main() {
 
     // Vertices for a Square    
     let squareVertices = [-0.5, 0.5, -0.5, -0.5, 0.0, -0.5,];
+
+    // Create a new buffer object and bind it
+    let vertexBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
+    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(squareVertices), webgl.STATIC_DRAW);
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
 }
 
 main();
