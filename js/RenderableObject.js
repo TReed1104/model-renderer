@@ -41,6 +41,9 @@ class RenderableObject {
         this.position = [0, 0, 0]
         this.rotationAngle = [0, 0, 0]
         this.scale = [1, 1, 1]
+
+        // Setup the model matrix
+        this.modelMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
     }
 
     update(deltaTime) {
