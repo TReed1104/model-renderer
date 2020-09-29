@@ -45,8 +45,8 @@ class Engine {
         }
 
         // Calculate the delta in the X and Y position of the mouse from the previous frame, then convert it to a rotation in radians and add it to the current rotational Angles of the chosen object
-        this.renderableObjectRegister[this.indexOfDraggableObject].rotationAngle[1] += (event.pageX - this.oldMouseXPos) * 2 * Math.PI / canvas.width;
-        this.renderableObjectRegister[this.indexOfDraggableObject].rotationAngle[0] += (event.pageY - this.oldMouseYPos) * 2 * Math.PI / canvas.height;
+        this.renderableObjectRegister[this.indexOfDraggableObject].rotation[1] += (event.pageX - this.oldMouseXPos) * 2 * Math.PI / canvas.width;
+        this.renderableObjectRegister[this.indexOfDraggableObject].rotation[0] += (event.pageY - this.oldMouseYPos) * 2 * Math.PI / canvas.height;
 
         // Set the old mouse position ready for the next frame
         this.oldMouseXPos = event.pageX;
