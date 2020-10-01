@@ -78,12 +78,14 @@ class RenderableObject {
         if (uvs != undefined || uvs != null) {
             // Check there is data in the array
             if (uvs.length > 0) {
+                console.log("TODO: Texture UV Buffer setup");
             }
         }
         // Check if the surface normal data was supplied
         if (normals != undefined || normals != null) {
             // Check there is data in the array
             if (normals.length > 0) {
+                console.log("TODO: Surface Normals Buffer setup");
             }
         }
         // Unbind the VAO
