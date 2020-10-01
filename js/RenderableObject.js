@@ -42,28 +42,37 @@ class RenderableObject {
         }
         // Check if the Vertex data was supplied
         if (vertices != undefined || vertices != null) {
-            // Create a new buffer for the vertices
-            webgl.bindBuffer(webgl.ARRAY_BUFFER, webgl.createBuffer());
-            webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertices), webgl.STATIC_DRAW);
-            webgl.vertexAttribPointer(0, 3, webgl.FLOAT, false, 0, 0);
-            webgl.enableVertexAttribArray(0);
-            webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+            // Check there is data in the array
+            if (vertices.length > 0) {
+                // Create a new buffer for the vertices
+                webgl.bindBuffer(webgl.ARRAY_BUFFER, webgl.createBuffer());
+                webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertices), webgl.STATIC_DRAW);
+                webgl.vertexAttribPointer(0, 3, webgl.FLOAT, false, 0, 0);
+                webgl.enableVertexAttribArray(0);
+                webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+            }
         }
         // Check if the Indices data was supplied
         if (indices != undefined || indices != null) {
-            // Create a new buffer for the indices
-            webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, webgl.createBuffer());
-            webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), webgl.STATIC_DRAW);
-            webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+            // Check there is data in the array
+            if (indices.length > 0) {
+                // Create a new buffer for the indices
+                webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, webgl.createBuffer());
+                webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), webgl.STATIC_DRAW);
+                webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+            }
         }
         // Check if the colour data was supplied
         if (colours != undefined || colours != null) {
-            // Create a new buffer for the colour data
-            webgl.bindBuffer(webgl.ARRAY_BUFFER, webgl.createBuffer());
-            webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(colours), webgl.STATIC_DRAW);
-            webgl.vertexAttribPointer(1, 3, webgl.FLOAT, false, 0, 0);
-            webgl.enableVertexAttribArray(1);
-            webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+            // Check there is data in the array
+            if (colours.length > 0) {
+                // Create a new buffer for the colour data
+                webgl.bindBuffer(webgl.ARRAY_BUFFER, webgl.createBuffer());
+                webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(colours), webgl.STATIC_DRAW);
+                webgl.vertexAttribPointer(1, 3, webgl.FLOAT, false, 0, 0);
+                webgl.enableVertexAttribArray(1);
+                webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+            }
         }
         // Unbind the VAO
         webgl.bindVertexArray(null);
