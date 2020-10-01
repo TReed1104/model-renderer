@@ -1,6 +1,9 @@
 class Shader {
     constructor(vertexShaderSourceCode, fragmentShaderSourceCode) {
         this.program = this.compileShaderProgram(vertexShaderSourceCode, fragmentShaderSourceCode);
+        // Cache a copy of the shader code
+        this.vertexShaderCode = vertexShaderSourceCode;
+        this.fragmentShaderCode = fragmentShaderSourceCode;
     }
 
     compileShaderProgram(vertexSource, fragmentSource) {
