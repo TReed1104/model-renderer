@@ -74,6 +74,18 @@ class RenderableObject {
                 webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
             }
         }
+        // Check if the texture uv data was supplied
+        if (uvs != undefined || uvs != null) {
+            // Check there is data in the array
+            if (uvs.length > 0) {
+            }
+        }
+        // Check if the surface normal data was supplied
+        if (normals != undefined || normals != null) {
+            // Check there is data in the array
+            if (normals.length > 0) {
+            }
+        }
         // Unbind the VAO
         webgl.bindVertexArray(null);
         return vertexArrayObject
