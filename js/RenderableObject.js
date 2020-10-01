@@ -7,35 +7,13 @@ class RenderableObject {
         // Index in the shader register of the shader for this object
         this.shaderIndex = 0;
 
-        // Vertex data for rendering the object
+        // Cache the object data
         this.vertices = vertices;
         this.indices = indices;
         this.colours = colour;
 
-        // Create the Vertex array object for the object
-        this.vao = webgl.createVertexArray();
-        webgl.bindVertexArray(this.vao);
-        // Create a new buffer for the vertices
-        this.vertexBuffer = webgl.createBuffer();
-        webgl.bindBuffer(webgl.ARRAY_BUFFER, this.vertexBuffer);
-        webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(this.vertices), webgl.STATIC_DRAW);
-        webgl.vertexAttribPointer(0, 3, webgl.FLOAT, false, 0, 0);
-        webgl.enableVertexAttribArray(0);
-        webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
-
-        // Create a new buffer for the indices
-        this.indicesBuffer = webgl.createBuffer();
-        webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, this.indicesBuffer);
-        webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this.indices), webgl.STATIC_DRAW);
-
-        // Create a new buffer for the colour data
-        this.colourBuffer = webgl.createBuffer();
-        webgl.bindBuffer(webgl.ARRAY_BUFFER, this.colourBuffer);
-        webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(this.colours), webgl.STATIC_DRAW);
-        webgl.vertexAttribPointer(1, 3, webgl.FLOAT, false, 0, 0);
-        webgl.enableVertexAttribArray(1);
-        webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
-        webgl.bindVertexArray(null);
+        // Generate the Vertex array object
+        this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours);
 
         // Setup the transformation data
         this.position = position
@@ -51,6 +29,45 @@ class RenderableObject {
         this.transformedModelMatrix = matrix4.scale(this.transformedModelMatrix, this.scale[0], this.scale[1], this.scale[2]);
     }
 
+    generateVertexArray(vertices, indices, colours, uvs, normals) {
+        // Create a vertex array object
+        let vertexArrayObject = webgl.createVertexArray();
+        webgl.bindVertexArray(vertexArrayObject);
+        // Check we have vertices and indices for drawing an object
+        if (vertices == undefined || vertices == null || indices == undefined || indices == null) {
+            webgl.bindVertexArray(null);
+            return null
+        }
+        // Check if the Vertex data was supplied
+        if (vertices != undefined || vertices != null) {
+            // Create a new buffer for the vertices
+            webgl.bindBuffer(webgl.ARRAY_BUFFER, webgl.createBuffer());
+            webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertices), webgl.STATIC_DRAW);
+            webgl.vertexAttribPointer(0, 3, webgl.FLOAT, false, 0, 0);
+            webgl.enableVertexAttribArray(0);
+            webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+        }
+        // Check if the Indices data was supplied
+        if (indices != undefined || indices != null) {
+            // Create a new buffer for the indices
+            webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, webgl.createBuffer());
+            webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), webgl.STATIC_DRAW);
+            webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+        }
+        // Check if the colour data was supplied
+        if (colours != undefined || colours != null) {
+            // Create a new buffer for the colour data
+            webgl.bindBuffer(webgl.ARRAY_BUFFER, webgl.createBuffer());
+            webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(colours), webgl.STATIC_DRAW);
+            webgl.vertexAttribPointer(1, 3, webgl.FLOAT, false, 0, 0);
+            webgl.enableVertexAttribArray(1);
+            webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+        }
+        // Unbind the VAO
+        webgl.bindVertexArray(null);
+        return vertexArrayObject
+    }
+
     update(deltaTime) {
         // Transform the model with the current model data
         this.transformedModelMatrix = matrix4.translate(this.modelMatrix, this.position[0], this.position[1], this.position[2]);
@@ -63,7 +80,7 @@ class RenderableObject {
     draw(shader, projectionMatrix, viewMatrix) {
         // Enable the shader for the object
         shader.enable()
-        webgl.bindVertexArray(this.vao);
+        webgl.bindVertexArray(this.vertexArray);
         // Link to the MVP matrix in the shader
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "pMatrix"), false, projectionMatrix);
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "vMatrix"), false, viewMatrix);
