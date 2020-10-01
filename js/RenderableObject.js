@@ -1,6 +1,6 @@
 // Renderable Object Class Definition
 class RenderableObject {
-    constructor(id, vertices, indices, colour, position, rotation, scale) {
+    constructor(id, vertices, indices, colour, uvs, normals, position, rotation, scale) {
         // Identifier for the object
         this.id = id
 
@@ -11,9 +11,11 @@ class RenderableObject {
         this.vertices = vertices;
         this.indices = indices;
         this.colours = colour;
+        this.uvs = uvs;
+        this.normals = normals;
 
         // Generate the Vertex array object
-        this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours);
+        this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours, this.uvs, this.normals);
 
         // Setup the transformation data
         this.position = position
