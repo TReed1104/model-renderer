@@ -4,7 +4,7 @@ class Shader {
         this.vertexShaderCode = vertexShaderSourceCode;
         this.fragmentShaderCode = fragmentShaderSourceCode;
         // Compile the shader
-        this.program = this.compileShaderProgram(vertexShaderSourceCode, fragmentShaderSourceCode);ß
+        this.program = this.compileShaderProgram(vertexShaderSourceCode, fragmentShaderSourceCode);
     }
 
     compileShaderProgram(vertexSource, fragmentSource) {
