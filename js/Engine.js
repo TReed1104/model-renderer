@@ -1,8 +1,10 @@
-// Prep the canvas and get our webgl context
-var canvas = document.getElementById('main-canvas')
-var webgl = canvas.getContext('webgl2');
+// Imports
+import { canvas, webgl } from "./Webgl.js"
+import Shader from "./Shader.js";
+import { matrix4 } from "./Matrix4.js"
+import RenderableObject from "./RenderableObject.js"
 
-class Engine {
+export default class Engine {
     constructor() {
         this.shaderRegister = []                // A register of all the shaders
         this.renderableObjectRegister = []      // A register of all the renderable objects

@@ -1,5 +1,9 @@
+// Imports
+import { webgl } from "./Webgl.js"
+import { matrix4 } from "./Matrix4.js"
+
 // Renderable Object Class Definition
-class RenderableObject {
+export default class RenderableObject {
     constructor(id, vertices, indices, colour, uvs, normals, position, rotation, scale) {
         // Identifier for the object
         this.id = id

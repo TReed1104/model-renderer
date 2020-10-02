@@ -1,4 +1,4 @@
-var matrix4 = {
+export var matrix4 = {
     projection: function(angle, aspect, zMin, zMax) {
         var ang = Math.tan((angle * 0.5) * Math.PI / 180); //angle*0.5
         return [
