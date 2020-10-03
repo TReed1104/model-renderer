@@ -4,12 +4,12 @@ import { matrix4 } from "./Matrix4.js"
 
 // Renderable Object Class Definition
 export default class RenderableObject {
-    constructor(id, vertices, indices, colour, uvs, normals, position, rotation, scale) {
+    constructor(id, shaderIndex, vertices, indices, colour, uvs, normals, position, rotation, scale) {
         // Identifier for the object
-        this.id = id
+        this.id = id;
 
         // Index in the shader register of the shader for this object
-        this.shaderIndex = 0;
+        (shaderIndex != undefined) ? this.shaderIndex = shaderIndex : this.shaderIndex = 0;
 
         // Cache the object data
         this.vertices = vertices;
