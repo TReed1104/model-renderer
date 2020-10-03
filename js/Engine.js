@@ -6,6 +6,7 @@ import RenderableObject from "./RenderableObject.js"
 
 // Import the Shaders
 import * as ShaderDefault from "../shaders/Default.js"
+import * as ShaderTextured from "../shaders/Textured.js"
 
 export default class Engine {
     constructor() {
@@ -62,6 +63,7 @@ export default class Engine {
     loadShaders() {
         // Create the shader
         this.shaderRegister.push(new Shader(ShaderDefault.VertexCode, ShaderDefault.FragmentCode));
+        this.shaderRegister.push(new Shader(ShaderTextured.VertexCode, ShaderTextured.FragmentCode));
     }
 
     // Load our renderable objects
