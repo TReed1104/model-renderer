@@ -111,9 +111,9 @@ export default class RenderableObject {
         shader.enable()
         webgl.bindVertexArray(this.vertexArray);
         // Link to the MVP matrix in the shader
-        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "pMatrix"), false, projectionMatrix);
-        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "vMatrix"), false, viewMatrix);
-        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "mMatrix"), false, this.transformedModelMatrix);
+        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "modelMatrix"), false, this.transformedModelMatrix);
+        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "viewMatrix"), false, viewMatrix);
+        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "projectionMatrix"), false, projectionMatrix);
         // Render the object
         webgl.drawElements(webgl.TRIANGLES, this.indices.length, webgl.UNSIGNED_SHORT, 0);
         webgl.bindVertexArray(null);
