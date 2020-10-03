@@ -4,6 +4,9 @@ import Shader from "./Shader.js";
 import { matrix4 } from "./Matrix4.js"
 import RenderableObject from "./RenderableObject.js"
 
+// Import the Shaders
+import * as DefaultShader from "../shaders/Default.js"
+
 export default class Engine {
     constructor() {
         this.shaderRegister = []                // A register of all the shaders
@@ -57,34 +60,8 @@ export default class Engine {
 
     // Load the shaders
     loadShaders() {
-        // Basic Vertex Shader Source Code
-        let vertexShaderSourceCode = `#version 300 es
-            layout (location=0) in vec3 vertexPosition;
-            layout (location=1) in vec3 vertexColour;
-            out vec3 fragmentColour;
-            uniform mat4 pMatrix;
-            uniform mat4 vMatrix;
-            uniform mat4 mMatrix;
-
-            void main() {
-                fragmentColour = vertexColour;
-                gl_Position = pMatrix * vMatrix * mMatrix * vec4(vertexPosition, 1.0);
-            }
-        `;
-
-        // Basic Fragment Shader Source Code
-        let fragmentShaderSourceCode = `#version 300 es
-            precision highp float;
-            in vec3 fragmentColour;
-            out vec4 outputColour;
-
-            void main(void) {
-                outputColour = vec4(fragmentColour, 1.0);
-            }
-        `;
-
         // Create the shader
-        this.shaderRegister.push(new Shader(vertexShaderSourceCode, fragmentShaderSourceCode));
+        this.shaderRegister.push(new Shader(DefaultShader.VertexCode, DefaultShader.FragmentCode));
     }
 
     // Load our renderable objects
