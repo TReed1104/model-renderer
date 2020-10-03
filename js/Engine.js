@@ -5,7 +5,7 @@ import { matrix4 } from "./Matrix4.js"
 import RenderableObject from "./RenderableObject.js"
 
 // Import the Shaders
-import * as DefaultShader from "../shaders/Default.js"
+import * as ShaderDefault from "../shaders/Default.js"
 
 export default class Engine {
     constructor() {
@@ -61,7 +61,7 @@ export default class Engine {
     // Load the shaders
     loadShaders() {
         // Create the shader
-        this.shaderRegister.push(new Shader(DefaultShader.VertexCode, DefaultShader.FragmentCode));
+        this.shaderRegister.push(new Shader(ShaderDefault.VertexCode, ShaderDefault.FragmentCode));
     }
 
     // Load our renderable objects
