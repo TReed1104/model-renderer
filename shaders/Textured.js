@@ -37,12 +37,12 @@ var FragmentCode =
     out vec4 outputColour;
 
     // Uniforms - From Program
-    uniform bool useTextures;
+    uniform bool enableTextures;
     uniform sampler2D textureSampler;
     
     // Fragment Shader Entry
     void main(void) {
-        if (useTextures) {
+        if (enableTextures) {
             outputColour = texture(textureSampler, fragmentUV);
         }
         else {
