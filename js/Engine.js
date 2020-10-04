@@ -16,8 +16,8 @@ export default class Engine {
         this.renderableObjectRegister = []      // A register of all the renderable objects
         this.oldTime = 0;
 
-        this.projectionMatrix = matrix4.perspective(ExtendedMaths.degreesToRadians(90), canvas.width / canvas.height, 1, 100);
-        this.viewMatrix = matrix4.inverse(matrix4.lookAt([0, 0, 8], [0, 0, 0], [0, 1, 0]));
+        // Create the main camera
+        this.mainCamera = new Camera("Main Camera", [0, 0, 8], [0, 0, 0], [0, 1, 0], 90, 1 , 100);
 
         // Variables for drag-rotating an object
         this.indexOfDraggableObject = 0;
@@ -96,7 +96,7 @@ export default class Engine {
         webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
         webgl.enable(webgl.DEPTH_TEST);
         this.renderableObjectRegister.forEach(renderable => {
-            renderable.draw(this.shaderRegister[renderable.shaderIndex], this.projectionMatrix, this.viewMatrix);
+            renderable.draw(this.shaderRegister[renderable.shaderIndex], this.mainCamera.projectionMatrix, this.mainCamera.viewMatrix);
         });
         webgl.disable(webgl.DEPTH_TEST);
     }
