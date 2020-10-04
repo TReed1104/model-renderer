@@ -18,6 +18,10 @@ export default class RenderableObject {
         this.uvs = uvs;
         this.normals = normals;
 
+        // Texturing
+        this.isTextureLoaded = false;
+        this.isObjectUVMapped = false;
+        this.texture = null;
         // Generate the Vertex array object
         this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours, this.uvs, this.normals);
 
@@ -82,7 +86,16 @@ export default class RenderableObject {
         if (uvs != undefined || uvs != null) {
             // Check there is data in the array
             if (uvs.length > 0) {
-                console.log("TODO: Texture UV Buffer setup");
+                // Create a new buffer for the UV data
+                webgl.bindBuffer(webgl.ARRAY_BUFFER, webgl.createBuffer());
+                webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(uvs), webgl.STATIC_DRAW);
+                webgl.vertexAttribPointer(2, 2, webgl.FLOAT, false, 0, 0);
+                webgl.enableVertexAttribArray(2);
+                webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
+                this.isObjectUVMapped = true;
+            }
+            else {
+                this.isObjectUVMapped = false;
             }
         }
         // Check if the surface normal data was supplied
