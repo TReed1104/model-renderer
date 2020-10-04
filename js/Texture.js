@@ -15,9 +15,7 @@ export default class Texture {
     LoadTexture(texturePath) {
         var texture = webgl.createTexture();
         webgl.bindTexture(webgl.TEXTURE_2D, texture);
-        // Fill the texture with a 1x1 blue pixel.
-        webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, 1, 1, 0, webgl.RGBA, webgl.UNSIGNED_BYTE, new Uint8Array([0, 0, 255, 255]));
-        // Asynchronously load an image
+        webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, 1, 1, 0, webgl.RGBA, webgl.UNSIGNED_BYTE, new Uint8Array([255, 0, 255, 255]));
         var image = new Image();
         image.src = texturePath;
         // Load event for the textures
