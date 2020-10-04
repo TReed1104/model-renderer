@@ -130,7 +130,7 @@ export default class RenderableObject {
         image.addEventListener('error',  () => {
             this.isTextureLoaded = false;
         });
-        return texture
+        return texture;
     }
 
     update(deltaTime) {
