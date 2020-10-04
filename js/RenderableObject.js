@@ -151,9 +151,22 @@ export default class RenderableObject {
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "modelMatrix"), false, this.transformedModelMatrix);
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "viewMatrix"), false, viewMatrix);
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "projectionMatrix"), false, projectionMatrix);
+
+        // Check if object has been configure for texturing and there is a loaded texture
+        let enableTexturing = (this.isTextureLoaded && this.isObjectUVMapped);
+        webgl.uniform1i(webgl.getUniformLocation(shader.program, "enableTextures"), enableTexturing);
+        if (this.isTextureLoaded) {
+            webgl.activeTexture(webgl.TEXTURE0);
+            webgl.bindTexture(webgl.TEXTURE_2D, this.texture);
+            webgl.uniform1i(webgl.getUniformLocation(shader.program, "textureSampler"), 0);
+        }
         // Render the object
         webgl.drawElements(webgl.TRIANGLES, this.indices.length, webgl.UNSIGNED_SHORT, 0);
         webgl.bindVertexArray(null);
+        // Clean up the bound texture
+        if (enableTexturing) {
+            webgl.bindTexture(webgl.TEXTURE_2D, null);
+        }
         // Disable the shader for the object - Make sure its cleared for the next object
         shader.disable()
     }
