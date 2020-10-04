@@ -16,10 +16,16 @@ export default class Shader {
         let vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
         webgl.shaderSource(vertexShader, vertexSource);
         webgl.compileShader(vertexShader);
+        if (!webgl.getShaderParameter(vertexShader, webgl.COMPILE_STATUS)) {
+            console.log("Vertex Shader -", this.id, "- failed to compile:\n" + webgl.getShaderInfoLog(vertexShader));
+        }
         // Compile the Fragment Shader
         let fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
         webgl.shaderSource(fragmentShader, fragmentSource);
         webgl.compileShader(fragmentShader);
+        if (!webgl.getShaderParameter(fragmentShader, webgl.COMPILE_STATUS)) {
+            console.log("Fragment Shader -", this.id, "- failed to compile:\n" + webgl.getShaderInfoLog(fragmentShader));
+        }
         // Link together the shader objects
         let shaderProgram = webgl.createProgram();
         webgl.attachShader(shaderProgram, vertexShader);
