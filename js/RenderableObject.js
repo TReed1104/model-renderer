@@ -1,6 +1,6 @@
 // Imports
 import { webgl } from "./Webgl.js"
-import { matrix4 } from "./Matrix4.js"
+import matrix4 from "./Matrix4.js"
 import Texture from "./Texture.js"
 
 // Renderable Object Class Definition
