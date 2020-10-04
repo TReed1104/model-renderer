@@ -1,5 +1,6 @@
 // Imports
 import { canvas, webgl } from "./Webgl.js"
+import ExtendedMaths from "./ExtendedMaths.js"
 import Shader from "./Shader.js";
 import { matrix4 } from "./Matrix4.js"
 import RenderableObject from "./RenderableObject.js"
