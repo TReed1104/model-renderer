@@ -4,6 +4,8 @@ import { webgl } from "./Webgl.js"
 export default class Texture {
     constructor(id, texturePath) {
         this.id = id;
+        this.width = 0;
+        this.height = 0;
         this.texturePath = texturePath;
         this.webglTexture = null;
         this.isLoaded = false;
@@ -24,6 +26,9 @@ export default class Texture {
             webgl.bindTexture(webgl.TEXTURE_2D, texture);
             webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, webgl.RGBA, webgl.UNSIGNED_BYTE, image);
             webgl.generateMipmap(webgl.TEXTURE_2D);
+            // Set the sizing of the texture
+            this.width = image.width;
+            this.height = image.height;
             this.isLoaded = true;
             this.webglTexture = texture;
         });
