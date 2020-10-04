@@ -2,7 +2,8 @@
 import { webgl } from "./Webgl.js"
 
 export default class Shader {
-    constructor(vertexShaderSourceCode, fragmentShaderSourceCode) {
+    constructor(id, vertexShaderSourceCode, fragmentShaderSourceCode) {
+        this.id = id;
         // Cache a copy of the shader code
         this.vertexShaderCode = vertexShaderSourceCode;
         this.fragmentShaderCode = fragmentShaderSourceCode;
