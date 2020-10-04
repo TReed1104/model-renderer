@@ -18,11 +18,6 @@ export default class RenderableObject {
         this.uvs = uvs;
         this.normals = normals;
 
-        // Texturing
-        this.isTextureLoaded = false;
-        this.isObjectUVMapped = false;
-        this.texture = this.loadTexture("cubetexture.png");
-
         // Generate the Vertex array object
         this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours, this.uvs, this.normals);
 
@@ -87,16 +82,7 @@ export default class RenderableObject {
         if (uvs != undefined || uvs != null) {
             // Check there is data in the array
             if (uvs.length > 0) {
-                // Create a new buffer for the UV data
-                webgl.bindBuffer(webgl.ARRAY_BUFFER, webgl.createBuffer());
-                webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(uvs), webgl.STATIC_DRAW);
-                webgl.vertexAttribPointer(2, 2, webgl.FLOAT, false, 0, 0);
-                webgl.enableVertexAttribArray(2);
-                webgl.bindBuffer(webgl.ARRAY_BUFFER, null);
-                this.isObjectUVMapped = true;
-            }
-            else {
-                this.isObjectUVMapped = false;
+                console.log("TODO: Texture UV Buffer setup");
             }
         }
         // Check if the surface normal data was supplied
@@ -131,7 +117,7 @@ export default class RenderableObject {
         image.addEventListener('error',  () => {
             this.isTextureLoaded = false;
         });
-        return texture;
+        return texture
     }
 
     update(deltaTime) {
@@ -151,22 +137,9 @@ export default class RenderableObject {
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "modelMatrix"), false, this.transformedModelMatrix);
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "viewMatrix"), false, viewMatrix);
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "projectionMatrix"), false, projectionMatrix);
-
-        // Check if texture buffer
-        let enableTexturing = (this.isTextureLoaded && this.isObjectUVMapped);
-        webgl.uniform1i(webgl.getUniformLocation(shader.program, "enableTextures"), enableTexturing);
-        if (this.isTextureLoaded) {
-            webgl.activeTexture(webgl.TEXTURE0);
-            webgl.bindTexture(webgl.TEXTURE_2D, this.texture);
-            webgl.uniform1i(webgl.getUniformLocation(shader.program, "textureSampler"), 0);
-        }
         // Render the object
         webgl.drawElements(webgl.TRIANGLES, this.indices.length, webgl.UNSIGNED_SHORT, 0);
         webgl.bindVertexArray(null);
-
-        if (enableTexturing) {
-            webgl.bindTexture(webgl.TEXTURE_2D, null);
-        }
         // Disable the shader for the object - Make sure its cleared for the next object
         shader.disable()
     }
