@@ -21,7 +21,8 @@ export default class RenderableObject {
         // Texturing
         this.isTextureLoaded = false;
         this.isObjectUVMapped = false;
-        this.texture = null;
+        this.texture = this.loadTexture("cubetexture.png");
+
         // Generate the Vertex array object
         this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours, this.uvs, this.normals);
 
