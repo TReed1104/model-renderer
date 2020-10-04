@@ -12,12 +12,15 @@ import * as ShaderTextured from "../shaders/Textured.js"
 
 export default class Engine {
     constructor() {
+        // Registers
         this.shaderRegister = []                // A register of all the shaders
         this.renderableObjectRegister = []      // A register of all the renderable objects
-        this.oldTime = 0;
-
-        // Create the main camera
+ 
+        // Cameras
         this.mainCamera = new Camera("Main Camera", [0, 0, 8], [0, 0, 0], [0, 1, 0], 90, 1 , 100);
+
+        // Delta Time variables
+        this.oldTime = 0;
 
         // Variables for drag-rotating an object
         this.indexOfDraggableObject = 0;
