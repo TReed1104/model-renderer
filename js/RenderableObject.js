@@ -97,21 +97,25 @@ export default class RenderableObject {
         return vertexArrayObject
     }
 
-    loadTexture(textureUrl) {
+    loadTexture(texturePath) {
         var texture = webgl.createTexture();
         webgl.bindTexture(webgl.TEXTURE_2D, texture);
-
         // Fill the texture with a 1x1 blue pixel.
         webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, 1, 1, 0, webgl.RGBA, webgl.UNSIGNED_BYTE, new Uint8Array([0, 0, 255, 255]));
-
         // Asynchronously load an image
         var image = new Image();
-        image.src = textureUrl;
-        image.addEventListener('load', function () {
+        image.src = texturePath;
+        // Load event for the textures
+        image.addEventListener('load', () => {
             // Now that the image has loaded make copy it to the texture.
             webgl.bindTexture(webgl.TEXTURE_2D, texture);
             webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, webgl.RGBA, webgl.UNSIGNED_BYTE, image);
             webgl.generateMipmap(webgl.TEXTURE_2D);
+            this.isTextureLoaded = true;
+        });
+        // Catch when a texture fails to load
+        image.addEventListener('error',  () => {
+            this.isTextureLoaded = false;
         });
         return texture
     }
