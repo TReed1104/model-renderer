@@ -15,9 +15,8 @@ export default class Engine {
         this.renderableObjectRegister = []      // A register of all the renderable objects
         this.oldTime = 0;
 
-        this.projectionMatrix = matrix4.projection(40, canvas.width / canvas.height, 1, 100);
-        this.viewMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
-        this.viewMatrix[14] = this.viewMatrix[14] - 6;
+        this.projectionMatrix = matrix4.perspective(ExtendedMaths.degreesToRadians(90), canvas.width / canvas.height, 1, 100);
+        this.viewMatrix = matrix4.inverse(matrix4.lookAt([0, 0, 8], [0, 0, 0], [0, 1, 0]));
 
         // Variables for drag-rotating an object
         this.indexOfDraggableObject = 0;
