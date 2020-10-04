@@ -1,6 +1,7 @@
 // Imports
 import { webgl } from "./Webgl.js"
 import { matrix4 } from "./Matrix4.js"
+import Texture from "./Texture.js"
 
 // Renderable Object Class Definition
 export default class RenderableObject {
@@ -19,9 +20,8 @@ export default class RenderableObject {
         this.normals = normals;
 
         // Texturing
-        this.isTextureLoaded = false;
         this.isObjectUVMapped = false;
-        this.texture = this.loadTexture("cubetexture.png");
+        this.texture = new Texture("Test Texture", "cubetexture.png");
 
         // Generate the Vertex array object
         this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours, this.uvs, this.normals);
@@ -111,29 +111,6 @@ export default class RenderableObject {
         return vertexArrayObject
     }
 
-    loadTexture(texturePath) {
-        var texture = webgl.createTexture();
-        webgl.bindTexture(webgl.TEXTURE_2D, texture);
-        // Fill the texture with a 1x1 blue pixel.
-        webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, 1, 1, 0, webgl.RGBA, webgl.UNSIGNED_BYTE, new Uint8Array([0, 0, 255, 255]));
-        // Asynchronously load an image
-        var image = new Image();
-        image.src = texturePath;
-        // Load event for the textures
-        image.addEventListener('load', () => {
-            // Now that the image has loaded make copy it to the texture.
-            webgl.bindTexture(webgl.TEXTURE_2D, texture);
-            webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, webgl.RGBA, webgl.UNSIGNED_BYTE, image);
-            webgl.generateMipmap(webgl.TEXTURE_2D);
-            this.isTextureLoaded = true;
-        });
-        // Catch when a texture fails to load
-        image.addEventListener('error',  () => {
-            this.isTextureLoaded = false;
-        });
-        return texture;
-    }
-
     update(deltaTime) {
         // Transform the model with the current model data
         this.transformedModelMatrix = matrix4.translate(this.modelMatrix, this.position[0], this.position[1], this.position[2]);
@@ -153,11 +130,11 @@ export default class RenderableObject {
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "projectionMatrix"), false, projectionMatrix);
 
         // Check if object has been configure for texturing and there is a loaded texture
-        let enableTexturing = (this.isTextureLoaded && this.isObjectUVMapped);
+        let enableTexturing = (this.texture.isLoaded && this.isObjectUVMapped);
         webgl.uniform1i(webgl.getUniformLocation(shader.program, "enableTextures"), enableTexturing);
-        if (this.isTextureLoaded) {
+        if (enableTexturing) {
             webgl.activeTexture(webgl.TEXTURE0);
-            webgl.bindTexture(webgl.TEXTURE_2D, this.texture);
+            webgl.bindTexture(webgl.TEXTURE_2D, this.texture.webglTexture);
             webgl.uniform1i(webgl.getUniformLocation(shader.program, "textureSampler"), 0);
         }
         // Render the object
