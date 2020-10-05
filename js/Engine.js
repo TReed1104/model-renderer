@@ -14,16 +14,17 @@ export default class Engine {
     constructor() {
         // Registers
         this.shaderRegister = []                // A register of all the shaders
+        this.cameraRegister = []                // A list of all the world cameras
         this.renderableObjectRegister = []      // A register of all the renderable objects
- 
-        // Cameras
-        this.mainCamera = new Camera("Main Camera", [0, 0, 8], [0, 0, 0], [0, 1, 0], 90, 1 , 100);
+
+        // Indexers
+        this.indexOfMainCamera = 0;
+        this.indexOfDraggableObject = 0;
 
         // Delta Time variables
         this.oldTime = 0;
 
         // Variables for drag-rotating an object
-        this.indexOfDraggableObject = 0;
         this.mouseClicked = false;
         this.oldMouseXPos = 0;
         this.oldMouseYPos = 0;
@@ -63,6 +64,11 @@ export default class Engine {
         this.oldMouseYPos = event.pageY;
     };
 
+    loadCameras() {
+        // Create the main Camera
+        this.cameraRegister.push(new Camera("Main Camera", [0, 0, 8], [0, 0, 0], [0, 1, 0], 90, 1 , 100));
+    }
+
     // Load the shaders
     loadShaders() {
         // Create the shader
@@ -85,8 +91,10 @@ export default class Engine {
 
     // Engine Update
     updateScene(deltaTime) {
-        // Update the camera
-        this.mainCamera.update(deltaTime);
+        // Update all the cameras
+        this.cameraRegister.forEach(camera => {
+            camera.update(deltaTime);
+        });
 
         // Update all the objects
         this.renderableObjectRegister.forEach(renderable => {
@@ -102,7 +110,7 @@ export default class Engine {
         webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
         webgl.enable(webgl.DEPTH_TEST);
         this.renderableObjectRegister.forEach(renderable => {
-            renderable.draw(this.shaderRegister[renderable.shaderIndex], this.mainCamera.projectionMatrix, this.mainCamera.viewMatrix);
+            renderable.draw(this.shaderRegister[renderable.shaderIndex], this.cameraRegister[this.indexOfMainCamera].projectionMatrix, this.cameraRegister[this.indexOfMainCamera].viewMatrix);
         });
         webgl.disable(webgl.DEPTH_TEST);
     }
@@ -118,8 +126,12 @@ export default class Engine {
 
     // Engine Execution call
     run() {
+        // Call the load functions
         this.loadShaders();
+        this.loadCameras();
         this.loadObjects();
+
+        // Start the run-time loop
         window.requestAnimationFrame(this.sceneLoop);
     }
 }
