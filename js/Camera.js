@@ -48,4 +48,9 @@ export default class Camera {
         this.up = [newUpX, newUpY, newUpZ];
     }
 
+    adjustClipping(newZNear, newZFar) {
+        this.nearZ = newZNear;
+        this.farZ = newZFar;
+    }
+
 }
