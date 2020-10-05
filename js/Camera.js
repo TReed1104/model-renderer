@@ -53,4 +53,7 @@ export default class Camera {
         this.farZ = newZFar;
     }
 
+    adjustFieldOfView(newFieldOfViewAngle) {
+        this.fieldOfViewAngle = newFieldOfViewAngle;
+    }
 }
