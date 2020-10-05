@@ -39,4 +39,13 @@ export default class Camera {
     refocus(newLookAtX, newLookAtY, newLookAtZ) {
         this.lookAt = [newLookAtX, newLookAtY, newLookAtZ];
     }
+
+    realign(newUp) {
+        this.up = newUp;
+    }
+
+    realign(newUpX, newUpY, newUpZ) {
+        this.up = [newUpX, newUpY, newUpZ];
+    }
+
 }
