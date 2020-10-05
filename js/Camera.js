@@ -31,4 +31,12 @@ export default class Camera {
     reposition(newPositionX, newPositionY, newPositionZ) {
         this.position = [newPositionX, newPositionY, newPositionZ];
     }
+
+    refocus(newLookAt) {
+        this.lookAt = newLookAt;
+    }
+
+    refocus(newLookAtX, newLookAtY, newLookAtZ) {
+        this.lookAt = [newLookAtX, newLookAtY, newLookAtZ];
+    }
 }
