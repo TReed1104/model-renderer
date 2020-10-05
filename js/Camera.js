@@ -1,5 +1,5 @@
 import { canvas } from "./Webgl.js"
-import matrix4  from "./Matrix4.js"
+import matrix4 from "./Matrix4.js"
 import ExtendedMaths from "./ExtendedMaths.js"
 
 export default class Camera {
