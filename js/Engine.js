@@ -38,15 +38,21 @@ export default class Engine {
 
     // Mouse movement function
     mouseButtonClicked = (event) => {
-        // The mouse has been clicked, get the click location in orthogonal space
-        this.mouseClickedLeft = true;
-        this.oldMouseXPos = event.pageX;
-        this.oldMouseYPos = event.pageY;
+        // On Left Click
+        if (event.button == 0) {
+            // The mouse has been clicked, get the click location in orthogonal space
+            this.mouseClickedLeft = true;
+            this.oldMouseXPos = event.pageX;
+            this.oldMouseYPos = event.pageY;
+        }
     };
 
     mouseButtonReleased = (event) => {
-        // The mouse click has been released, stop the "drag" calculations
-        this.mouseClickedLeft = false;
+        // On Left Click
+        if (event.button == 0) {
+            // The mouse click has been released, stop the "drag" calculations
+            this.mouseClickedLeft = false;
+        }
     };
 
     mouseMovement = (event) => {
