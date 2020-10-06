@@ -25,7 +25,7 @@ export default class Engine {
         this.oldTime = 0;
 
         // Variables for drag-rotating an object
-        this.mouseClicked = false;
+        this.mouseClickedLeft = false;
         this.oldMouseXPos = 0;
         this.oldMouseYPos = 0;
 
@@ -39,19 +39,19 @@ export default class Engine {
     // Mouse movement function
     mouseButtonClicked = (event) => {
         // The mouse has been clicked, get the click location in orthogonal space
-        this.mouseClicked = true;
+        this.mouseClickedLeft = true;
         this.oldMouseXPos = event.pageX;
         this.oldMouseYPos = event.pageY;
     };
 
     mouseButtonReleased = (event) => {
         // The mouse click has been released, stop the "drag" calculations
-        this.mouseClicked = false;
+        this.mouseClickedLeft = false;
     };
 
     mouseMovement = (event) => {
         // Check if the mouse is clicked
-        if (!this.mouseClicked) {
+        if (!this.mouseClickedLeft) {
             return false;
         }
 
