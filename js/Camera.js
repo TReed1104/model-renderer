@@ -10,17 +10,18 @@ export default class Camera {
         this.lookAt = lookAt;
         this.up = up;
         this.fieldOfViewAngle = fieldOfViewAngle;
+        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle)
         this.nearZ = nearZ;
         this.farZ = farZ;
 
         // Setup the camera matrix
-        this.projectionMatrix = matrix4.perspective(ExtendedMaths.degreesToRadians(this.fieldOfViewAngle), canvas.width / canvas.height, this.nearZ, this.farZ);
+        this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
     update(deltaTime) {
         // Update the camera matrix
-        this.projectionMatrix = matrix4.perspective(ExtendedMaths.degreesToRadians(this.fieldOfViewAngle), canvas.width / canvas.height, this.nearZ, this.farZ);
+        this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
@@ -29,9 +30,10 @@ export default class Camera {
         this.lookAt = lookAt;
         this.up = up;
         this.fieldOfViewAngle = fieldOfViewAngle;
+        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle)
         this.nearZ = nearZ;
         this.farZ = farZ;
-        this.projectionMatrix = matrix4.perspective(ExtendedMaths.degreesToRadians(this.fieldOfViewAngle), canvas.width / canvas.height, this.nearZ, this.farZ);
+        this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
@@ -66,5 +68,6 @@ export default class Camera {
 
     adjustFieldOfView(newFieldOfViewAngle) {
         this.fieldOfViewAngle = newFieldOfViewAngle;
+        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle)
     }
 }
