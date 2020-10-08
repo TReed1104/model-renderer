@@ -14,6 +14,15 @@ export default class Camera {
         this.nearZ = nearZ;
         this.farZ = farZ;
 
+        // Cache the base fields of the camera -> allows easy "resetting"
+        this.base_Position = position;
+        this.base_LookAt = lookAt;
+        this.base_Up = up;
+        this.base_FieldOfViewAngle = fieldOfViewAngle;
+        this.base_FieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle)
+        this.base_NearZ = nearZ;
+        this.base_FarZ = farZ;
+
         // Setup the camera matrix
         this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
