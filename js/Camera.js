@@ -67,6 +67,10 @@ export default class Camera {
         this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.base_FieldOfViewAngle)
         this.nearZ = this.base_NearZ;
         this.farZ = this.base_FarZ;
+
+        // Reset the Camera matrices
+        this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);
+        this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
     reposition(newPosition) {
