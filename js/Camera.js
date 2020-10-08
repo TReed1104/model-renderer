@@ -24,6 +24,17 @@ export default class Camera {
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
+    resetup(position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
+        this.position = position;
+        this.lookAt = lookAt;
+        this.up = up;
+        this.fieldOfViewAngle = fieldOfViewAngle;
+        this.nearZ = nearZ;
+        this.farZ = farZ;
+        this.projectionMatrix = matrix4.perspective(ExtendedMaths.degreesToRadians(this.fieldOfViewAngle), canvas.width / canvas.height, this.nearZ, this.farZ);
+        this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
+    }
+
     reposition(newPosition) {
         this.position = newPosition;
     }
