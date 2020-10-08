@@ -23,7 +23,7 @@ export default class Camera {
         this.base_NearZ = nearZ;
         this.base_FarZ = farZ;
 
-        // Setup the camera matrix
+        // Setup the camera matrices
         this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
@@ -53,7 +53,7 @@ export default class Camera {
         this.base_NearZ = nearZ;
         this.base_FarZ = farZ;
 
-        // Resetup the Camera matrix
+        // Resetup the Camera matrices
         this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
