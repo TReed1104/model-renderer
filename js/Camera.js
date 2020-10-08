@@ -10,7 +10,7 @@ export default class Camera {
         this.lookAt = lookAt;
         this.up = up;
         this.fieldOfViewAngle = fieldOfViewAngle;
-        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle)
+        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(fieldOfViewAngle);
         this.nearZ = nearZ;
         this.farZ = farZ;
 
@@ -19,7 +19,7 @@ export default class Camera {
         this.base_LookAt = lookAt;
         this.base_Up = up;
         this.base_FieldOfViewAngle = fieldOfViewAngle;
-        this.base_FieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle)
+        this.base_FieldOfViewRadians = ExtendedMaths.degreesToRadians(fieldOfViewAngle);
         this.base_NearZ = nearZ;
         this.base_FarZ = farZ;
 
