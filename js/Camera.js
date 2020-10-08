@@ -46,6 +46,17 @@ export default class Camera {
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
+    reset() {
+        // Reset the camera to the original setup
+        this.position = this.base_Position;
+        this.lookAt = this.base_LookAt;
+        this.up = this.base_Up;
+        this.fieldOfViewAngle = this.base_FieldOfViewAngle;
+        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.base_FieldOfViewAngle)
+        this.nearZ = this.base_NearZ;
+        this.farZ = this.base_FarZ;
+    }
+
     reposition(newPosition) {
         this.position = newPosition;
     }
