@@ -76,8 +76,21 @@ export default class Camera {
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
+    // Reposition the camera using a array
     reposition(newPosition) {
-        this.position = newPosition;
+        // Check the newPosition array is the correct length
+        if (newPosition.length != 3) {
+            console.log("Camera - Invalid new position array size");
+            return;
+        }
+        // Check the values in the array are numbers
+        let numberTypeChecks = (isNaN(newPosition[0]) || isNaN(newPosition[1]) || isNaN(newPosition[2]));
+        if (numberTypeChecks) {
+            console.log("Camera - Invalid new position type");
+            return;
+        }
+        // set the position
+        this.position = [newPosition[0], newPosition[1], newPosition[2]];
     }
 
     reposition(newPositionX, newPositionY, newPositionZ) {
