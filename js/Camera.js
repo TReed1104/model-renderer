@@ -60,6 +60,7 @@ export default class Camera {
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
+    // Reset the camera to its base setup using the initialised fields
     reset() {
         // Reset the camera to the original setup
         this.position = this.base_Position;
