@@ -35,6 +35,7 @@ export default class Camera {
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
+    // Reinitialse the camera to a new setup
     reinitialise(position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
         // Reinitialise the cameras field
         this.position = position;
