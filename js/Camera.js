@@ -110,6 +110,18 @@ export default class Camera {
     }
 
     realign(newUp) {
+        // Check the new up orientation coord array is the correct length
+        if (newUp.length != 3) {
+            console.log("Camera - Invalid new up orientation array size");
+            return;
+        }
+        // Check the values in the array are numbers
+        let numberTypeChecks = (isNaN(newUp[0]) || isNaN(newUp[1]) || isNaN(newUp[2]));
+        if (numberTypeChecks) {
+            console.log("Camera - Invalid new up orientation coords type");
+            return;
+        }
+        // Set the new up orientation coordinates
         this.up = newUp;
     }
 
