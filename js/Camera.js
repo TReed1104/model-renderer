@@ -78,7 +78,7 @@ export default class Camera {
 
     // Reposition the camera using a array
     reposition(newPosition) {
-        // Check the newPosition array is the correct length
+        // Check the new position coord array is the correct length
         if (newPosition.length != 3) {
             console.log("Camera - Invalid new position array size");
             return;
@@ -89,7 +89,7 @@ export default class Camera {
             console.log("Camera - Invalid new position type");
             return;
         }
-        // set the position
+        // Set the cameras poition to the new supplied position
         this.position = [newPosition[0], newPosition[1], newPosition[2]];
     }
 
