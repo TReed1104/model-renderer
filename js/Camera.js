@@ -94,6 +94,18 @@ export default class Camera {
     }
 
     refocus(newLookAt) {
+        // Check the new look-at coord array is the correct length
+        if (newLookAt.length != 3) {
+            console.log("Camera - Invalid new look-at array size");
+            return;
+        }
+        // Check the values in the array are numbers
+        let numberTypeChecks = (isNaN(newLookAt[0]) || isNaN(newLookAt[1]) || isNaN(newLookAt[2]));
+        if (numberTypeChecks) {
+            console.log("Camera - Invalid new look-at coords type");
+            return;
+        }
+        // Set the new look-at coordinates
         this.lookAt = newLookAt;
     }
 
