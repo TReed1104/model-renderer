@@ -93,24 +93,12 @@ export default class Camera {
         this.position = [newPosition[0], newPosition[1], newPosition[2]];
     }
 
-    reposition(newPositionX, newPositionY, newPositionZ) {
-        this.position = [newPositionX, newPositionY, newPositionZ];
-    }
-
     refocus(newLookAt) {
         this.lookAt = newLookAt;
     }
 
-    refocus(newLookAtX, newLookAtY, newLookAtZ) {
-        this.lookAt = [newLookAtX, newLookAtY, newLookAtZ];
-    }
-
     realign(newUp) {
         this.up = newUp;
-    }
-
-    realign(newUpX, newUpY, newUpZ) {
-        this.up = [newUpX, newUpY, newUpZ];
     }
 
     adjustClipping(newZNear, newZFar) {
