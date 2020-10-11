@@ -120,6 +120,11 @@ export default class Camera {
     }
 
     realign(newUp) {
+        // Check the supplied data was an array
+        if (!Array.isArray(newUp)) {
+            console.log("Error - Camera.realign requires an int array");
+            return;
+        }
         // Check the new up orientation coord array is the correct length
         if (newUp.length != 3) {
             console.log("Camera - Invalid new up orientation array size");
