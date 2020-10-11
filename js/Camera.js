@@ -100,18 +100,17 @@ export default class Camera {
     refocus(newLookAt) {
         // Check the supplied data was an array
         if (!Array.isArray(newLookAt)) {
-            console.log("Error - Camera.refocus requires an int array");
+            console.log("Error - Camera.refocus requires an array");
             return;
         }
-        // Check the new look-at coord array is the correct length
+        // Check the new focus point coord array is the correct length
         if (newLookAt.length != 3) {
-            console.log("Camera - Invalid new look-at array size");
+            console.log("Error - Camera.refocus requires a three element array - xyz");
             return;
         }
         // Check the values in the array are numbers
-        let numberTypeChecks = (isNaN(newLookAt[0]) || isNaN(newLookAt[1]) || isNaN(newLookAt[2]));
-        if (numberTypeChecks) {
-            console.log("Camera - Invalid new look-at coords type");
+        if (isNaN(newLookAt[0]) || isNaN(newLookAt[1]) || isNaN(newLookAt[2])) {
+            console.log("Error - Camera.refocus requires an int array");
             return;
         }
         // Set the new look-at coordinates
