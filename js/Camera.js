@@ -78,6 +78,11 @@ export default class Camera {
 
     // Reposition the camera using a array
     reposition(newPosition) {
+        // Check the supplied data was an array
+        if (!Array.isArray(newPosition)) {
+            console.log("Error - Camera.reposition requires an int array");
+            return;
+        }
         // Check the new position coord array is the correct length
         if (newPosition.length != 3) {
             console.log("Camera - Invalid new position array size");
