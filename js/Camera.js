@@ -99,6 +99,11 @@ export default class Camera {
     }
 
     refocus(newLookAt) {
+        // Check the supplied data was an array
+        if (!Array.isArray(newLookAt)) {
+            console.log("Error - Camera.refocus requires an int array");
+            return;
+        }
         // Check the new look-at coord array is the correct length
         if (newLookAt.length != 3) {
             console.log("Camera - Invalid new look-at array size");
