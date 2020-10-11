@@ -120,18 +120,17 @@ export default class Camera {
     realign(newUp) {
         // Check the supplied data was an array
         if (!Array.isArray(newUp)) {
-            console.log("Error - Camera.realign requires an int array");
+            console.log("Error - Camera.realign requires an array");
             return;
         }
-        // Check the new up orientation coord array is the correct length
+        // Check the new orientation array is the correct length
         if (newUp.length != 3) {
-            console.log("Camera - Invalid new up orientation array size");
+            console.log("Error - Camera.realign requires a three element array - xyz");
             return;
         }
         // Check the values in the array are numbers
-        let numberTypeChecks = (isNaN(newUp[0]) || isNaN(newUp[1]) || isNaN(newUp[2]));
-        if (numberTypeChecks) {
-            console.log("Camera - Invalid new up orientation coords type");
+        if (isNaN(newUp[0]) || isNaN(newUp[1]) || isNaN(newUp[2])) {
+            console.log("Error - Camera.realign requires an int array");
             return;
         }
         // Set the new up orientation coordinates
