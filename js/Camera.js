@@ -80,18 +80,17 @@ export default class Camera {
     reposition(newPosition) {
         // Check the supplied data was an array
         if (!Array.isArray(newPosition)) {
-            console.log("Error - Camera.reposition requires an int array");
+            console.log("Error - Camera.reposition requires an array");
             return;
         }
         // Check the new position coord array is the correct length
         if (newPosition.length != 3) {
-            console.log("Camera - Invalid new position array size");
+            console.log("Error - Camera.reposition requires a three element array - xyz");
             return;
         }
         // Check the values in the array are numbers
-        let numberTypeChecks = (isNaN(newPosition[0]) || isNaN(newPosition[1]) || isNaN(newPosition[2]));
-        if (numberTypeChecks) {
-            console.log("Camera - Invalid new position type");
+        if (isNaN(newPosition[0]) || isNaN(newPosition[1]) || isNaN(newPosition[2])) {
+            console.log("Error - Camera.reposition requires an int array");
             return;
         }
         // Set the cameras poition to the new supplied position
