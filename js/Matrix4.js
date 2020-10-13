@@ -173,8 +173,8 @@ var matrix4 = {
         return matrix4.multiply(m, matrix4.zRotation(angleInRadians));
     },
 
-    scale: function (m, sx, sy, sz) {
-        return matrix4.multiply(m, matrix4.scaling(sx, sy, sz));
+    scale: function (m, scale) {
+        return matrix4.multiply(m, matrix4.scaling(scale[0], scale[1], scale[2]));
     },
 
     inverse: function (m) {
