@@ -173,6 +173,13 @@ var matrix4 = {
         return matrix4.multiply(m, matrix4.zRotation(angleInRadians));
     },
 
+    rotate: function(m, rotation) {
+        let rotationMatrixX = matrix4.xRotate(m, rotation[0]);
+        let rotationMatrixY = matrix4.yRotate(rotationMatrixX, rotation[1]);
+        let rotationMatrixZ = matrix4.zRotate(rotationMatrixY, rotation[2]);
+        return rotationMatrixZ;
+    },
+
     scale: function (m, scale) {
         return matrix4.multiply(m, matrix4.scaling(scale[0], scale[1], scale[2]));
     },
