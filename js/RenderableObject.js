@@ -32,12 +32,11 @@ export default class RenderableObject {
         this.scale = scale
 
         // Setup the model matrix
-        this.modelMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
-        this.transformedModelMatrix = matrix4.translate(this.modelMatrix, this.position[0], this.position[1], this.position[2]);
-        this.transformedModelMatrix = matrix4.xRotate(this.transformedModelMatrix, this.rotation[0]);
-        this.transformedModelMatrix = matrix4.yRotate(this.transformedModelMatrix, this.rotation[1]);
-        this.transformedModelMatrix = matrix4.zRotate(this.transformedModelMatrix, this.rotation[2]);
-        this.transformedModelMatrix = matrix4.scale(this.transformedModelMatrix, this.scale[0], this.scale[1], this.scale[2]);
+        this.baseMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+        this.translationMatrix = matrix4.translate(this.baseMatrix, this.position);
+        this.rotationMatrix = matrix4.rotate(this.baseMatrix, this.rotation);
+        this.scaleMatrix = matrix4.scale(this.baseMatrix, this.scale);
+        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
     }
 
     generateVertexArray(vertices, indices, colours, uvs, normals) {
@@ -113,11 +112,10 @@ export default class RenderableObject {
 
     update(deltaTime) {
         // Transform the model with the current model data
-        this.transformedModelMatrix = matrix4.translate(this.modelMatrix, this.position[0], this.position[1], this.position[2]);
-        this.transformedModelMatrix = matrix4.xRotate(this.transformedModelMatrix, this.rotation[0]);
-        this.transformedModelMatrix = matrix4.yRotate(this.transformedModelMatrix, this.rotation[1]);
-        this.transformedModelMatrix = matrix4.zRotate(this.transformedModelMatrix, this.rotation[2]);
-        this.transformedModelMatrix = matrix4.scale(this.transformedModelMatrix, this.scale[0], this.scale[1], this.scale[2]);
+        this.translationMatrix = matrix4.translate(this.baseMatrix, this.position);
+        this.rotationMatrix = matrix4.rotate(this.baseMatrix, this.rotation);
+        this.scaleMatrix = matrix4.scale(this.baseMatrix, this.scale);
+        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
     }
 
     draw(shader, projectionMatrix, viewMatrix) {
@@ -125,7 +123,7 @@ export default class RenderableObject {
         shader.enable()
         webgl.bindVertexArray(this.vertexArray);
         // Link to the MVP matrix in the shader
-        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "modelMatrix"), false, this.transformedModelMatrix);
+        webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "modelMatrix"), false, this.modelMatrix);
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "viewMatrix"), false, viewMatrix);
         webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "projectionMatrix"), false, projectionMatrix);
 
