@@ -28,13 +28,15 @@ export default class Camera {
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
+    // Camera update, called once per frame
     update(deltaTime) {
         // Update the camera matrix
         this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
-    resetup(position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
+    // Reinitialse the camera to a new setup
+    reinitialise(position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
         // Reinitialise the cameras field
         this.position = position;
         this.lookAt = lookAt;
@@ -58,6 +60,7 @@ export default class Camera {
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
+    // Reset the camera to its base setup using the initialised fields
     reset() {
         // Reset the camera to the original setup
         this.position = this.base_Position;
@@ -73,28 +76,65 @@ export default class Camera {
         this.viewMatrix = matrix4.inverse(matrix4.lookAt(this.position, this.lookAt, this.up));
     }
 
+    // Reposition the camera using a array
     reposition(newPosition) {
-        this.position = newPosition;
-    }
-
-    reposition(newPositionX, newPositionY, newPositionZ) {
-        this.position = [newPositionX, newPositionY, newPositionZ];
+        // Check the supplied data was an array
+        if (!Array.isArray(newPosition)) {
+            console.log("Error - Camera.reposition requires an array");
+            return;
+        }
+        // Check the new position coord array is the correct length
+        if (newPosition.length != 3) {
+            console.log("Error - Camera.reposition requires a three element array - xyz");
+            return;
+        }
+        // Check the values in the array are numbers
+        if (isNaN(newPosition[0]) || isNaN(newPosition[1]) || isNaN(newPosition[2])) {
+            console.log("Error - Camera.reposition requires an int array");
+            return;
+        }
+        // Set the cameras poition to the new supplied position
+        this.position = [newPosition[0], newPosition[1], newPosition[2]];
     }
 
     refocus(newLookAt) {
+        // Check the supplied data was an array
+        if (!Array.isArray(newLookAt)) {
+            console.log("Error - Camera.refocus requires an array");
+            return;
+        }
+        // Check the new focus point coord array is the correct length
+        if (newLookAt.length != 3) {
+            console.log("Error - Camera.refocus requires a three element array - xyz");
+            return;
+        }
+        // Check the values in the array are numbers
+        if (isNaN(newLookAt[0]) || isNaN(newLookAt[1]) || isNaN(newLookAt[2])) {
+            console.log("Error - Camera.refocus requires an int array");
+            return;
+        }
+        // Set the new look-at coordinates
         this.lookAt = newLookAt;
     }
 
-    refocus(newLookAtX, newLookAtY, newLookAtZ) {
-        this.lookAt = [newLookAtX, newLookAtY, newLookAtZ];
-    }
-
     realign(newUp) {
+        // Check the supplied data was an array
+        if (!Array.isArray(newUp)) {
+            console.log("Error - Camera.realign requires an array");
+            return;
+        }
+        // Check the new orientation array is the correct length
+        if (newUp.length != 3) {
+            console.log("Error - Camera.realign requires a three element array - xyz");
+            return;
+        }
+        // Check the values in the array are numbers
+        if (isNaN(newUp[0]) || isNaN(newUp[1]) || isNaN(newUp[2])) {
+            console.log("Error - Camera.realign requires an int array");
+            return;
+        }
+        // Set the new up orientation coordinates
         this.up = newUp;
-    }
-
-    realign(newUpX, newUpY, newUpZ) {
-        this.up = [newUpX, newUpY, newUpZ];
     }
 
     adjustClipping(newZNear, newZFar) {
