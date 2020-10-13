@@ -157,8 +157,8 @@ var matrix4 = {
         ];
     },
 
-    translate: function (m, tx, ty, tz) {
-        return matrix4.multiply(m, matrix4.translation(tx, ty, tz));
+    translate: function (m, translation) {
+        return matrix4.multiply(m, matrix4.translation(translation[0], translation[1], translation[2]));
     },
 
     xRotate: function (m, angleInRadians) {
