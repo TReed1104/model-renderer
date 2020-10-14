@@ -42,4 +42,32 @@ export default class Model {
             mesh.update(deltaTime, this.translationMatrix, this.rotationMatrix, this.scaleMatrix);
         });
     }
+
+    draw(shader, projectionMatrix, viewMatrix) {
+        shader.enable();
+        this.models.meshes.forEach(mesh => {
+            webgl.bindVertexArray(mesh.vertexArray);
+            // Link to the MVP matrix in the shader
+            webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "modelMatrix"), false, mesh.modelMatrix);
+            webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "viewMatrix"), false, viewMatrix);
+            webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "projectionMatrix"), false, projectionMatrix);
+    
+            // Check if object has been configure for texturing and there is a loaded texture
+            let enableTexturing = (mesh.texture.isLoaded && mesh.isObjectUVMapped);
+            webgl.uniform1i(webgl.getUniformLocation(shader.program, "enableTextures"), enableTexturing);
+            if (enableTexturing) {
+                webgl.activeTexture(webgl.TEXTURE0);
+                webgl.bindTexture(webgl.TEXTURE_2D, mesh.texture.webglTexture);
+                webgl.uniform1i(webgl.getUniformLocation(shader.program, "textureSampler"), 0);
+            }
+            // Render the object
+            webgl.drawElements(webgl.TRIANGLES, mesh.indices.length, webgl.UNSIGNED_SHORT, 0);
+            webgl.bindVertexArray(null);
+            // Clean up the bound texture
+            if (enableTexturing) {
+                webgl.bindTexture(webgl.TEXTURE_2D, null);
+            }
+        });
+        shader.disable()
+    }
 }
