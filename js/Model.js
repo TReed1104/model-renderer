@@ -2,8 +2,14 @@ import matrix4 from "./Matrix4.js"
 import Mesh from "./Mesh.js"
 
 export default class Model {
-    constructor(modelFileLocation, position, rotation, scale) {
+    constructor(id, shaderIndex, modelFileLocation, position, rotation, scale) {
+        // Identifier for the object
         this.id = id;
+
+        // Index in the shader register of the shader for this object
+        (shaderIndex != undefined) ? this.shaderIndex = shaderIndex : this.shaderIndex = 0;
+
+        // Model details
         this.modelFileLocation = modelFileLocation;
         this.meshes = [];
 
