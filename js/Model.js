@@ -21,6 +21,11 @@ export default class Model {
         this.scaleMatrix = matrix4.scale(this.baseMatrix, this.scale);
         this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
     }
+
+    loadModel(modelFileLocation) {
+
+    }
+
     update(deltaTime) {
         this.translationMatrix = matrix4.translate(this.baseMatrix, this.position);
         this.rotationMatrix = matrix4.rotate(this.baseMatrix, this.rotation);
