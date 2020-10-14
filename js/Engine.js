@@ -15,7 +15,7 @@ export default class Engine {
         // Registers
         this.shaderRegister = []                // A register of all the shaders
         this.cameraRegister = []                // A list of all the world cameras
-        this.renderableObjectRegister = []      // A register of all the renderable objects
+        this.modelRegister = []      // A register of all the renderable objects
 
         // Indexers
         this.indexOfMainCamera = 0;
@@ -62,8 +62,8 @@ export default class Engine {
         }
 
         // Calculate the delta in the X and Y position of the mouse from the previous frame, then convert it to a rotation in radians and add it to the current rotational Angles of the chosen object
-        this.renderableObjectRegister[this.indexOfDraggableObject].rotation[1] += (event.pageX - this.oldMouseXPos) * 2 * Math.PI / canvas.width;
-        this.renderableObjectRegister[this.indexOfDraggableObject].rotation[0] += (event.pageY - this.oldMouseYPos) * 2 * Math.PI / canvas.height;
+        this.modelRegister[this.indexOfDraggableObject].rotation[1] += (event.pageX - this.oldMouseXPos) * 2 * Math.PI / canvas.width;
+        this.modelRegister[this.indexOfDraggableObject].rotation[0] += (event.pageY - this.oldMouseYPos) * 2 * Math.PI / canvas.height;
 
         // Set the old mouse position ready for the next frame
         this.oldMouseXPos = event.pageX;
@@ -91,7 +91,7 @@ export default class Engine {
         var uvs = [0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0];
         var normals = []
         // Create a basic GameObject
-        this.renderableObjectRegister.push(new Model("Model Test", 1, "cube.obj", [0, 0, 1], [0, 0, 0], [1, 1, 1]));
+        this.modelRegister.push(new Model("Model Test", 1, "cube.obj", [0, 0, 1], [0, 0, 0], [1, 1, 1]));
     }
 
     // Engine Update
@@ -102,7 +102,7 @@ export default class Engine {
         });
 
         // Update all the objects
-        this.renderableObjectRegister.forEach(renderable => {
+        this.modelRegister.forEach(renderable => {
             renderable.update(deltaTime);
         });
     }
@@ -114,7 +114,7 @@ export default class Engine {
         webgl.clearColor(0.5, 0.5, 0.5, 0.9);
         webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
         webgl.enable(webgl.DEPTH_TEST);
-        this.renderableObjectRegister.forEach(renderable => {
+        this.modelRegister.forEach(renderable => {
             renderable.draw(this.shaderRegister[renderable.shaderIndex], this.cameraRegister[this.indexOfMainCamera].projectionMatrix, this.cameraRegister[this.indexOfMainCamera].viewMatrix);
         });
         webgl.disable(webgl.DEPTH_TEST);
