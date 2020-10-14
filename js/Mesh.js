@@ -101,4 +101,12 @@ export default class Mesh {
         webgl.bindVertexArray(null);
         return vertexArrayObject
     }
+
+    update(deltaTime, modelTranslationMatrix, modelRotationMatrix, modelScaleMatrix) {
+        // Transform the mesh relative to its model position
+        this.translationMatrix = matrix4.translate(modelTranslationMatrix, this.position);
+        this.rotationMatrix = matrix4.rotate(modelRotationMatrix, this.rotation);
+        this.scaleMatrix = matrix4.scale(modelScaleMatrix, this.scale);
+        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
+    }
 }
