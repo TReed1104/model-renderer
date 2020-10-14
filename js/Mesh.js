@@ -102,11 +102,11 @@ export default class Mesh {
         return vertexArrayObject
     }
 
-    update(deltaTime, modelTranslationMatrix, modelRotationMatrix, modelScaleMatrix) {
+    update(deltaTime, modelMatrix) {
         // Transform the mesh relative to its model position
-        this.translationMatrix = matrix4.translate(modelTranslationMatrix, this.position);
-        this.rotationMatrix = matrix4.rotate(modelRotationMatrix, this.rotation);
-        this.scaleMatrix = matrix4.scale(modelScaleMatrix, this.scale);
+        this.translationMatrix = matrix4.multiply(modelMatrix, matrix4.translate(this.baseMatrix, this.position));
+        this.rotationMatrix = matrix4.multiply(modelMatrix, matrix4.rotate(this.baseMatrix, this.rotation));
+        this.scaleMatrix = matrix4.multiply(modelMatrix, matrix4.scale(this.baseMatrix, this.scale));
         this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
     }
 }

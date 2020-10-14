@@ -47,7 +47,7 @@ export default class Model {
         this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
         // Update the positions of all the meshes
         this.meshes.forEach( mesh => {
-            mesh.update(deltaTime, this.translationMatrix, this.rotationMatrix, this.scaleMatrix);
+            mesh.update(deltaTime, this.modelMatrix);
         });
     }
 
