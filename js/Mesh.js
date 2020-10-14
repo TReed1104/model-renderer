@@ -1,4 +1,3 @@
-export class Mesh {
-    constructor() {
+export default class Mesh {
     }
 }
