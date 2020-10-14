@@ -11,6 +11,9 @@ function resolve(dir) {
 module.exports = {
     mode: 'production',
     entry: ['@babel/polyfill', './js/index.js'],
+    output: {
+        filename: 'bundle.js',
+    },
     module: {
         rules: [
             {

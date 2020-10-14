@@ -11,6 +11,9 @@ function resolve(dir) {
 module.exports = {
     mode: 'development',
     entry: ['@babel/polyfill', './js/index.js'],
+    output: {
+        filename: 'bundle.js',
+    },
     devServer: {
         hot: true,
         watchOptions: {
