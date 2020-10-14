@@ -10,7 +10,7 @@ function resolve(dir) {
 
 module.exports = {
     mode: 'production',
-    entry: ['@babel/polyfill', './js/index.js'],
+    entry: ['@babel/polyfill', './src/js/index.js'],
     output: {
         filename: 'bundle.js',
     },
@@ -44,7 +44,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'index.html',
+            template: 'src/index.html',
             inject: true
         }),
         new CopyWebpackPlugin([{
