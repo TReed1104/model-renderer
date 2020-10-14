@@ -91,8 +91,7 @@ export default class Engine {
         var uvs = [0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0];
         var normals = []
         // Create a basic GameObject
-        //this.renderableObjectRegister.push(new RenderableObject("Colourful Cube", 0, vertices, indices, colours, uvs, normals, [0, 0, 0], [0, 0, 0], [1, 1, 1]));
-        this.renderableObjectRegister.push(new RenderableObject("Textured Cube", 1, vertices, indices, colours, uvs, normals, [0, 0, 0], [0, 0, 0], [1, 1, 1]));
+        this.renderableObjectRegister.push(new Model("Model Test", 1, "cube.obj", [0, 0, 1], [0, 0, 0], [1, 1, 1]));
     }
 
     // Engine Update
