@@ -45,7 +45,7 @@ export default class Model {
 
     draw(shader, projectionMatrix, viewMatrix) {
         shader.enable();
-        this.models.meshes.forEach(mesh => {
+        this.meshes.forEach(mesh => {
             webgl.bindVertexArray(mesh.vertexArray);
             // Link to the MVP matrix in the shader
             webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "modelMatrix"), false, mesh.modelMatrix);
