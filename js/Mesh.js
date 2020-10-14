@@ -107,6 +107,6 @@ export default class Mesh {
         this.translationMatrix = matrix4.multiply(modelMatrix, matrix4.translate(this.baseMatrix, this.position));
         this.rotationMatrix = matrix4.multiply(modelMatrix, matrix4.rotate(this.baseMatrix, this.rotation));
         this.scaleMatrix = matrix4.multiply(modelMatrix, matrix4.scale(this.baseMatrix, this.scale));
-        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
+        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.scaleMatrix, this.rotationMatrix), this.translationMatrix);
     }
 }
