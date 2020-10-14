@@ -10,7 +10,7 @@ function resolve(dir) {
 
 module.exports = {
     mode: 'production',
-    entry: ['@babel/polyfill', './js/main.js'],
+    entry: ['@babel/polyfill', './js/index.js'],
     module: {
         rules: [
             {
