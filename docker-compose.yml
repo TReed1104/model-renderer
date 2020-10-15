@@ -12,7 +12,6 @@ services:
             - ./app/dist:/var/www/model-renderer
         ports:
             - 8090:80
-            - 444:443
         networks:
             - model-renderer-network
 
