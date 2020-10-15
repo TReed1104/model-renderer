@@ -43,7 +43,9 @@ var FragmentCode =
     // Fragment Shader Entry
     void main(void) {
         if (enableTextures) {
-            outputColour = texture(textureSampler, fragmentUV);
+            vec2 UV = fragmentUV;
+            UV.y = 1.0 - UV.y;
+            outputColour = texture(textureSampler, UV);
         }
         else {
             // Texturing has not been setup, use the colour buffer
