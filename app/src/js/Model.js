@@ -58,6 +58,9 @@ export default class Model {
         let fileLines = objFileString.split("\n");
         // Iterate through the file line-by-line
         fileLines.forEach(line => {
+            // Check the line doesn't start with a comment
+            if (!line.startsWith("#")) {
+            }
         });
         console.log(meshes);
         console.log(meshData);
