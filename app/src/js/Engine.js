@@ -70,7 +70,7 @@ export default class Engine {
 
     loadCameras() {
         // Create the main Camera
-        this.cameraRegister.push(new Camera("Main Camera", [0, 0, 8], [0, 0, 0], [0, 1, 0], 90, 1, 100));
+        this.cameraRegister.push(new Camera("Main Camera", [0, 2, 5], [0, 0, 0], [0, 1, 0], 90, 1, 100));
     }
 
     // Load the shaders
