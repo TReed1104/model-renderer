@@ -83,7 +83,7 @@ export default class Engine {
     // Load our renderable objects
     loadObjects() {
         // Create a basic GameObject
-        this.modelRegister.push(new Model("Model Test", 1, "content/models/cat.obj", [0, 0, 0], [0, 0, 0], [1, 1, 1]));
+        this.modelRegister.push(new Model("Model Test", 1, "content/models/cube.obj", [0, 0, 0], [0, 0, 0], [1, 1, 1]));
     }
 
     // Engine Update
