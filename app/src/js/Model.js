@@ -64,6 +64,10 @@ export default class Model {
                 lineSplit = line.split(/\s+/);      // Split the line by any whitespace between characters - spaces, tabs, double space etc.
                 // If the line key is for the object vertices
                 if (lineSplit[0] == objKeys.vertices) {
+                    // Push the vertex data
+                    meshData.vertices.push(lineSplit[1]);
+                    meshData.vertices.push(lineSplit[2]);
+                    meshData.vertices.push(lineSplit[3]);
                 // If the line key is for the texture UVs
                 else if (lineSplit[0] == objKeys.uvs) {
                 }
