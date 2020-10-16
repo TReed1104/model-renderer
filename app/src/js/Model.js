@@ -84,6 +84,8 @@ export default class Model {
                     meshData.normals.push(lineElements[3]);
                 }
                 else if (lineElements[0] == objKeys.groupName) {
+                    // Found a object face group, create a mesh indice array
+                    meshes.push([]);
                 }
                 else if (lineElements[0] == objKeys.face) {
                 }
