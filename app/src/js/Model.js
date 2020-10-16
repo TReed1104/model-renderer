@@ -68,6 +68,11 @@ export default class Model {
                     meshData.vertices.push(lineSplit[1]);
                     meshData.vertices.push(lineSplit[2]);
                     meshData.vertices.push(lineSplit[3]);
+                    // Fill the vertex data to all be magenta
+                    meshData.colours.push(255);
+                    meshData.colours.push(0);
+                    meshData.colours.push(255);
+                }
                 // If the line key is for the texture UVs
                 else if (lineSplit[0] == objKeys.uvs) {
                 }
