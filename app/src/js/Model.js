@@ -27,7 +27,7 @@ export default class Model {
         this.translationMatrix = matrix4.translate(this.baseMatrix, this.position);
         this.rotationMatrix = matrix4.rotate(this.baseMatrix, this.rotation);
         this.scaleMatrix = matrix4.scale(this.baseMatrix, this.scale);
-        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.scaleMatrix, this.rotationMatrix), this.translationMatrix);
+        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
     }
 
     async loadModel(modelFileLocation) {
@@ -55,7 +55,7 @@ export default class Model {
         this.translationMatrix = matrix4.translate(this.baseMatrix, this.position);
         this.rotationMatrix = matrix4.rotate(this.baseMatrix, this.rotation);
         this.scaleMatrix = matrix4.scale(this.baseMatrix, this.scale);
-        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.scaleMatrix, this.rotationMatrix), this.translationMatrix);
+        this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
         // Update the positions of all the meshes
         this.meshes.forEach(mesh => {
             mesh.update(deltaTime, this.modelMatrix);
