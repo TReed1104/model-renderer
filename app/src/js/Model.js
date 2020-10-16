@@ -62,6 +62,18 @@ export default class Model {
             if (!line.startsWith("#")) {
                 let lineSplit = line.trim();        // Trim the whitespace from the start and end of the line
                 lineSplit = line.split(/\s+/);      // Split the line by any whitespace between characters - spaces, tabs, double space etc.
+                // If the line key is for the object vertices
+                if (lineSplit[0] == objKeys.vertices) {
+                // If the line key is for the texture UVs
+                else if (lineSplit[0] == objKeys.uvs) {
+                }
+                // If the line key is for the vertex normal
+                else if (lineSplit[0] == objKeys.normals) {
+                }
+                else if (lineSplit[0] == objKeys.groupName) {
+                }
+                else if (lineSplit[0] == objKeys.material) {
+                }
             }
         });
         console.log(meshes);
