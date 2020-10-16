@@ -80,6 +80,9 @@ export default class Model {
                 }
                 // If the line key is for the vertex normal
                 else if (lineSplit[0] == objKeys.normals) {
+                    meshData.normals.push(lineSplit[1]);
+                    meshData.normals.push(lineSplit[2]);
+                    meshData.normals.push(lineSplit[3]);
                 }
                 else if (lineSplit[0] == objKeys.groupName) {
                 }
