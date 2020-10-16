@@ -60,35 +60,34 @@ export default class Model {
         fileLines.forEach(line => {
             // Check the line doesn't start with a comment
             if (!line.startsWith("#")) {
-                let lineSplit = line.trim().split(/\s+/);      // Trim the whitespace from the start and end of the line and split it by any whitespace between characters - spaces, tabs, double space etc.
+                let lineElements = line.trim().split(/\s+/);      // Trim the whitespace from the start and end of the line and split it by any whitespace between characters - spaces, tabs, double space etc.
                 // If the line key is for the object vertices
-                if (lineSplit[0] == objKeys.vertices) {
+                if (lineElements[0] == objKeys.vertices) {
                     // Push the vertex data
-                    meshData.vertices.push(lineSplit[1]);
-                    meshData.vertices.push(lineSplit[2]);
-                    meshData.vertices.push(lineSplit[3]);
+                    meshData.vertices.push(lineElements[1]);
+                    meshData.vertices.push(lineElements[2]);
+                    meshData.vertices.push(lineElements[3]);
                     // Fill the vertex data to all be magenta
                     meshData.colours.push(255);
                     meshData.colours.push(0);
                     meshData.colours.push(255);
                 }
                 // If the line key is for the texture UVs
-                else if (lineSplit[0] == objKeys.uvs) {
-                    meshData.uvs.push(lineSplit[1]);
-                    meshData.uvs.push(lineSplit[2]);
+                else if (lineElements[0] == objKeys.uvs) {
+                    meshData.uvs.push(lineElements[1]);
+                    meshData.uvs.push(lineElements[2]);
                 }
                 // If the line key is for the vertex normal
-                else if (lineSplit[0] == objKeys.normals) {
-                    meshData.normals.push(lineSplit[1]);
-                    meshData.normals.push(lineSplit[2]);
-                    meshData.normals.push(lineSplit[3]);
+                else if (lineElements[0] == objKeys.normals) {
+                    meshData.normals.push(lineElements[1]);
+                    meshData.normals.push(lineElements[2]);
+                    meshData.normals.push(lineElements[3]);
                 }
-                else if (lineSplit[0] == objKeys.groupName) {
+                else if (lineElements[0] == objKeys.groupName) {
                 }
-                else if (lineSplit[0] == objKeys.face) {
-                    
+                else if (lineElements[0] == objKeys.face) {
                 }
-                else if (lineSplit[0] == objKeys.material) {
+                else if (lineElements[0] == objKeys.material) {
                 }
             }
         });
