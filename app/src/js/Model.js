@@ -46,7 +46,7 @@ export default class Model {
         this.scaleMatrix = matrix4.scale(this.baseMatrix, this.scale);
         this.modelMatrix = matrix4.multiply(matrix4.multiply(this.scaleMatrix, this.rotationMatrix), this.translationMatrix);
         // Update the positions of all the meshes
-        this.meshes.forEach( mesh => {
+        this.meshes.forEach(mesh => {
             mesh.update(deltaTime, this.modelMatrix);
         });
     }
@@ -59,7 +59,7 @@ export default class Model {
             webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "modelMatrix"), false, mesh.modelMatrix);
             webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "viewMatrix"), false, viewMatrix);
             webgl.uniformMatrix4fv(webgl.getUniformLocation(shader.program, "projectionMatrix"), false, projectionMatrix);
-    
+
             // Check if object has been configure for texturing and there is a loaded texture
             let enableTexturing = (mesh.texture.isLoaded && mesh.isObjectUVMapped);
             webgl.uniform1i(webgl.getUniformLocation(shader.program, "enableTextures"), enableTexturing);
