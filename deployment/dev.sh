@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ---------------------------------------
-echo Deployment Start - Production
+echo Deployment Start - Development
 echo ---------------------------------------
 echo Building and Deploying Model-Render
 echo ---------------------------------------
