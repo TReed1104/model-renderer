@@ -75,6 +75,8 @@ export default class Model {
                 }
                 // If the line key is for the texture UVs
                 else if (lineSplit[0] == objKeys.uvs) {
+                    meshData.uvs.push(lineSplit[1]);
+                    meshData.uvs.push(lineSplit[2]);
                 }
                 // If the line key is for the vertex normal
                 else if (lineSplit[0] == objKeys.normals) {
