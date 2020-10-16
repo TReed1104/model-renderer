@@ -88,6 +88,10 @@ export default class Model {
                     meshes.push([]);
                 }
                 else if (lineElements[0] == objKeys.face) {
+                    // If we've got to a face definition and there are no mesh indice data, create one
+                    if (meshes.length == 0) {
+                        meshes.push([]);
+                    }
                 }
                 else if (lineElements[0] == objKeys.material) {
                 }
