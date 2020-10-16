@@ -60,6 +60,8 @@ export default class Model {
         fileLines.forEach(line => {
             // Check the line doesn't start with a comment
             if (!line.startsWith("#")) {
+                let lineSplit = line.trim();        // Trim the whitespace from the start and end of the line
+                lineSplit = line.split(/\s+/);      // Split the line by any whitespace between characters - spaces, tabs, double space etc.
             }
         });
         console.log(meshes);
