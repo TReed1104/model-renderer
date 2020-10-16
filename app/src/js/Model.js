@@ -85,6 +85,9 @@ export default class Model {
                 }
                 else if (lineSplit[0] == objKeys.groupName) {
                 }
+                else if (lineSplit[0] == objKeys.face) {
+                    
+                }
                 else if (lineSplit[0] == objKeys.material) {
                 }
             }
