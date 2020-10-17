@@ -23,7 +23,7 @@ export default class Model {
         this.scale = scale
 
         // Setup the model matrix
-        this.baseMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+        this.baseMatrix = matrix4.create(1);
         this.translationMatrix = matrix4.translate(this.baseMatrix, this.position);
         this.rotationMatrix = matrix4.rotate(this.baseMatrix, this.rotation);
         this.scaleMatrix = matrix4.scale(this.baseMatrix, this.scale);
