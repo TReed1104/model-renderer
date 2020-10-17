@@ -1,4 +1,13 @@
 var matrix4 = {
+    create: function(value) {
+        var newMatrix = [
+            value, 0, 0, 0, 
+            0, value, 0, 0, 
+            0, 0, value, 0, 
+            0, 0, 0, value
+        ];
+        return newMatrix;
+    },
     subtractVectors: function (a, b) {
         return [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
     },
