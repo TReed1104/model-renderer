@@ -1,7 +1,7 @@
 import { webgl } from "./Webgl.js"
 import matrix4 from "./Matrix4.js"
 import Mesh from "./Mesh.js"
-import { Mesh as objLoaderMesh } from  "webgl-obj-loader"
+import { OBJ as objLoader } from  "webgl-obj-loader"
 
 export default class Model {
     constructor(id, shaderIndex, modelFileLocation, position, rotation, scale) {
@@ -36,7 +36,7 @@ export default class Model {
         // Get the raw text from the loaded file
         const objFileString = await objFileRequest.text();
         // Load the model data using webgl-obj-loader
-        let model = new objLoaderMesh(objFileString);
+        let model = new objLoader.Mesh(objFileString);
 
         // Setup vertex colouring for the mesh
         let vertexColours = [];
