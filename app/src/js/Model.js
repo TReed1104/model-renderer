@@ -15,7 +15,7 @@ export default class Model {
         this.modelFileLocation = modelFileLocation;
         this.meshes = [];
 
-        this.loadModel(this.modelFileLocation);
+        this.loadModels(this.modelFileLocation);
 
         // Setup the transformation data
         this.position = position
@@ -30,13 +30,7 @@ export default class Model {
         this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
     }
 
-    async loadModel(modelFileLocation) {
-        // Load the file
-        const objFileRequest = await fetch(modelFileLocation);
-        // Get the raw text from the loaded file
-        const objFileString = await objFileRequest.text();
-        // Load the model data using webgl-obj-loader
-        let model = new objLoader.Mesh(objFileString);
+    loadModels(models) {
 
         // Setup vertex colouring for the mesh
         let vertexColours = [];
