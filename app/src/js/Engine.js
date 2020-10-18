@@ -35,8 +35,8 @@ export default class Engine {
 
         // The list of the models to load from the content/models folder
         this.modelFileList = {
-            cube: { cube: "content/models/cube.obj"},
-            legoman: { legoman: "content/models/lego_man.obj" },
+            cube: { file: "content/models/cube.obj"},
+            legoman: { file: "content/models/lego_man.obj" },
         };
     }
 
