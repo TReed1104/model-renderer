@@ -31,18 +31,25 @@ export default class Model {
     }
 
     loadModels(models) {
+        // webgl-obj-loaders web-request to load the .obj files
+        objLoader.downloadMeshes(models, (meshes) => {
+            // For loaded file, parse the data to our Mesh class
+            for (let key of Object.keys(meshes)) {
+                // Shallow copy for access speed
+                let mesh = meshes[key];
 
-        // Setup vertex colouring for the mesh
-        let vertexColours = [];
-        model.vertices.forEach(vertex => {
-            vertexColours.push(1);
+                // Setup vertex colouring for the mesh
+                let vertexColours = [];
+                mesh.vertices.forEach(vertex => {
+                    vertexColours.push(1);
+                });
+
+                // For texturable section of the model, spawn a mesh
+                mesh.indicesPerMaterial.forEach(indices => {
+                    this.meshes.push(new Mesh(mesh.vertices, indices, vertexColours, mesh.textures, mesh.normals, [0, 0, 0], [0, 0, 0], [1, 1, 1], "content/textures/cubetexture.png"));
+                });
+            }
         });
-
-        // For texturable section of the model, spawn a mesh
-        model.indicesPerMaterial.forEach(indices => {
-            this.meshes.push(new Mesh(model.vertices, indices, vertexColours, model.textures, model.normals, [0, 0, 0], [0, 0, 0], [1, 1, 1], "content/textures/cubetexture.png"));
-        })
-
     }
 
     update(deltaTime) {
