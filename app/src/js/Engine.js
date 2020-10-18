@@ -32,6 +32,12 @@ export default class Engine {
         canvas.addEventListener("mouseup", this.mouseButtonReleased, false);
         canvas.addEventListener("mouseout", this.mouseButtonReleased, false);
         canvas.addEventListener("mousemove", this.mouseMovement, false);
+
+        // The list of the models to load from the content/models folder
+        this.modelFileList = {
+            cube: { cube: "content/models/cube.obj"},
+            legoman: { legoman: "content/models/lego_man.obj" },
+        };
     }
 
     // Mouse movement function
@@ -82,12 +88,10 @@ export default class Engine {
 
     // Load our renderable objects
     loadObjects() {
-        // Create a basic GameObject
-        let modelList = {
-            cube: { cube: "content/models/cube.obj" },
-            legoman: { legoman: "content/models/lego_man.obj" }
-        };
-        this.modelRegister.push(new Model("Model Test", 1, modelList.cube, [0, 0.5, 0], [0, 0, 0], [1, 1, 1]));
+        // Load each model in the list
+        for (let key of Object.keys(this.modelFileList)) {
+            this.modelRegister.push(new Model(key, 1, this.modelFileList[key], [0, 0, 0], [0, 0, 0], [1, 1, 1]));
+        }
     }
 
     // Engine Update
