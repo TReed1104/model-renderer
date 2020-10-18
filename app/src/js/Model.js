@@ -4,7 +4,7 @@ import Mesh from "./Mesh.js"
 import { OBJ as objLoader } from  "webgl-obj-loader"
 
 export default class Model {
-    constructor(id, shaderIndex, modelFileLocation, position, rotation, scale) {
+    constructor(id, shaderIndex, models, position, rotation, scale) {
         // Identifier for the object
         this.id = id;
 
@@ -12,10 +12,10 @@ export default class Model {
         (shaderIndex != undefined) ? this.shaderIndex = shaderIndex : this.shaderIndex = 0;
 
         // Model details
-        this.modelFileLocation = modelFileLocation;
+        this.models = models;
         this.meshes = [];
 
-        this.loadModels(this.modelFileLocation);
+        this.loadModels(this.models);
 
         // Setup the transformation data
         this.position = position
