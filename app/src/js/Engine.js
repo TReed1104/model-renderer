@@ -111,7 +111,7 @@ export default class Engine {
             // Check if the model is to be loaded
             if (this.modelConfigs[key].load) {
                 let model = this.modelConfigs[key];
-                this.modelRegister.push(new Model(key, 1, model.modelFile, model.position, model.rotation, model.scale));
+                this.modelRegister.push(new Model(key, model));
             }
         }
     }
