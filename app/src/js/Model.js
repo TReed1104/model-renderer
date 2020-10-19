@@ -4,25 +4,19 @@ import Mesh from "./Mesh.js"
 import { OBJ as objLoader } from "webgl-obj-loader"
 
 export default class Model {
-    constructor(id, shaderIndex, models, position, rotation, scale) {
+    constructor(id, config) {
         // Identifier for the object
         this.id = id;
+        
+        // Parse the config data object, if any required fields are missing set a default value
+        (config.shaderIndex != undefined) ? this.shaderIndex = config.shaderIndex : this.shaderIndex = 0;
+        (config.enabled != undefined) ? this.enabled = config.enabled : this.enabled = false;
+        (config.modelFile != undefined) ? this.loadModels(config.modelFile) : this.meshes = [];
+        (config.position != undefined) ? this.position = config.position : this.position = [0, 0, 0];
+        (config.rotation != undefined) ? this.rotation = config.rotation : this.rotation = [0, 0, 0];
+        (config.scale != undefined) ? this.scale = config.scale : this.scale = [1, 1, 1];
 
-        // Index in the shader register of the shader for this object
-        (shaderIndex != undefined) ? this.shaderIndex = shaderIndex : this.shaderIndex = 0;
-
-        // Model details
-        this.models = models;
-        this.meshes = [];
-
-        this.loadModels(this.models);
-
-        // Setup the transformation data
-        this.position = position
-        this.rotation = rotation
-        this.scale = scale
-
-        // Setup the model matrix
+        // Setup the Model transformation matrix -> (T*R*S)
         this.baseMatrix = matrix4.create(1);
         this.translationMatrix = matrix4.translate(this.baseMatrix, this.position);
         this.rotationMatrix = matrix4.rotate(this.baseMatrix, this.rotation);
