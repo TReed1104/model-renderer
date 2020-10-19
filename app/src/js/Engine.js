@@ -37,6 +37,8 @@ export default class Engine {
         this.modelConfigs = {
             cube: {
                 load: true,
+                enabled: true,
+                shaderIndex: 1,
                 modelFile: { path: "content/models/cube.obj"},
                 materialFile: {path: "content/models/cube.mtl"},
                 position: [0, 0, 0],
@@ -44,7 +46,9 @@ export default class Engine {
                 scale: [1, 1, 1],
             },
             legoman: {
-                load: false,
+                load: true,
+                enabled: false,
+                shaderIndex: 1,
                 modelFile: { path: "content/models/legoman.obj" },
                 materialFile: {path: "content/models/legoman.mtl"},
                 position: [0, 0, 0],
