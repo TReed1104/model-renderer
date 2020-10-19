@@ -34,9 +34,21 @@ export default class Engine {
         canvas.addEventListener("mousemove", this.mouseMovement, false);
 
         // The list of the models to load from the content/models folder
-        this.modelFileList = {
-            cube: { file: "content/models/cube.obj"},
-            legoman: { file: "content/models/lego_man.obj" },
+        this.modelConfigs = {
+            cube: {
+                modelFile: { path: "content/models/cube.obj"},
+                materialFile: {path: "content/models/cube.mtl"},
+                position: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+            },
+            legoman: {
+                modelFile: { path: "content/models/legoman.obj" },
+                materialFile: {path: "content/models/legoman.mtl"},
+                position: [0, 0, 0],
+                rotation: [0, 0, 0],
+                scale: [1, 1, 1],
+            },
         };
     }
 
@@ -89,8 +101,10 @@ export default class Engine {
     // Load our renderable objects
     loadObjects() {
         // Load each model in the list
-        for (let key of Object.keys(this.modelFileList)) {
-            this.modelRegister.push(new Model(key, 1, this.modelFileList[key], [0, 0, 0], [0, 0, 0], [1, 1, 1]));
+        for (let key of Object.keys(this.modelConfigs)) {
+            // Shallow copy for speed
+            let model = this.modelConfigs[key];
+            this.modelRegister.push(new Model(key, 1, model.modelFile, model.position, model.rotation, model.scale));
         }
     }
 
