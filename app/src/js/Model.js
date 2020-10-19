@@ -24,8 +24,9 @@ export default class Model {
         this.modelMatrix = matrix4.multiply(matrix4.multiply(this.translationMatrix, this.rotationMatrix), this.scaleMatrix);
     }
 
+    // TODO: Rewrite this function to also load a models .mtl file for texturing its seperate meshes
     loadModels(models) {
-        // Create/clear the mesh array
+        // Create or clear the mesh array
         this.meshes = [];
         // webgl-obj-loaders web-request to load the .obj files
         objLoader.downloadMeshes(models, (meshes) => {
