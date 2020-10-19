@@ -31,6 +31,8 @@ export default class Model {
     }
 
     loadModels(models) {
+        // Create/clear the mesh array
+        this.meshes = [];
         // webgl-obj-loaders web-request to load the .obj files
         objLoader.downloadMeshes(models, (meshes) => {
             // For loaded file, parse the data to our Mesh class
