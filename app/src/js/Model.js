@@ -1,7 +1,7 @@
 import { webgl } from "./Webgl.js"
 import matrix4 from "./Matrix4.js"
 import Mesh from "./Mesh.js"
-import { OBJ as objLoader } from  "webgl-obj-loader"
+import { OBJ as objLoader } from "webgl-obj-loader"
 
 export default class Model {
     constructor(id, shaderIndex, models, position, rotation, scale) {
