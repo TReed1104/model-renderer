@@ -36,6 +36,7 @@ export default class Engine {
         // The list of the models to load from the content/models folder
         this.modelConfigs = {
             cube: {
+                load: true,
                 modelFile: { path: "content/models/cube.obj"},
                 materialFile: {path: "content/models/cube.mtl"},
                 position: [0, 0, 0],
@@ -43,6 +44,7 @@ export default class Engine {
                 scale: [1, 1, 1],
             },
             legoman: {
+                load: false,
                 modelFile: { path: "content/models/legoman.obj" },
                 materialFile: {path: "content/models/legoman.mtl"},
                 position: [0, 0, 0],
@@ -102,9 +104,11 @@ export default class Engine {
     loadObjects() {
         // Load each model in the list
         for (let key of Object.keys(this.modelConfigs)) {
-            // Shallow copy for speed
-            let model = this.modelConfigs[key];
-            this.modelRegister.push(new Model(key, 1, model.modelFile, model.position, model.rotation, model.scale));
+            // Check if the model is to be loaded
+            if (this.modelConfigs[key].load) {
+                let model = this.modelConfigs[key];
+                this.modelRegister.push(new Model(key, 1, model.modelFile, model.position, model.rotation, model.scale));
+            }
         }
     }
 
