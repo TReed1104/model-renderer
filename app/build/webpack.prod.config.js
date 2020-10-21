@@ -20,22 +20,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: {
-                    loader: "babel-loader",
-                    options: {
-                        "presets": [[
-                            "@babel/preset-env", {
-                                "useBuiltIns": "entry"
-                            }]
-                        ],
-                        "plugins": [
-                            [
-                                "@babel/plugin-proposal-class-properties",
-                                {
-                                    "loose": true
-                                }
-                            ]
-                        ]
-                    }
+                    loader: "babel-loader"
                 }
             }
         ]
