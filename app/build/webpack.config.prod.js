@@ -12,7 +12,7 @@ module.exports = {
     mode: 'production',
     entry: ['@babel/polyfill', './src/js/index.js'],
     output: {
-        filename: 'bundle.js',
+        filename: 'app.bundle.js',
     },
     module: {
         rules: [

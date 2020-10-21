@@ -12,7 +12,7 @@ module.exports = {
     mode: 'development',
     entry: ['@babel/polyfill', './src/js/index.js'],
     output: {
-        filename: 'bundle.js',
+        filename: 'app.bundle.js',
     },
     devServer: {
         hot: true,
