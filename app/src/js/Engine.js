@@ -20,7 +20,7 @@ export default class Engine {
         this.indexOfDraggableObject = 0;
 
         // Delta Time variables
-        this.oldTime = 0;
+        this.previousFrameTime = 0;
 
         // Variables for drag-rotating an object
         this.mouseClickedLeft = false;
@@ -32,6 +32,20 @@ export default class Engine {
         canvas.addEventListener("mouseup", this.mouseButtonReleased, false);
         canvas.addEventListener("mouseout", this.mouseButtonReleased, false);
         canvas.addEventListener("mousemove", this.mouseMovement, false);
+
+        // List the Shaders for the engine to load
+        this.shaderConfigs = {
+            default: {
+                compile: true,
+                vertex: ShaderDefault.VertexCode,
+                fragment: ShaderDefault.FragmentCode
+            },
+            texturing: {
+                compile: true,
+                vertex: ShaderTextured.VertexCode,
+                fragment: ShaderTextured.FragmentCode
+            },
+        }
 
         // The list of the models to load from the content/models folder
         this.modelConfigs = {
@@ -98,9 +112,14 @@ export default class Engine {
 
     // Load the shaders
     loadShaders() {
-        // Create the shader
-        this.shaderRegister.push(new Shader("Default", ShaderDefault.VertexCode, ShaderDefault.FragmentCode));
-        this.shaderRegister.push(new Shader("Textured", ShaderTextured.VertexCode, ShaderTextured.FragmentCode));
+        // Iterate through the shader config list
+        for (let key of Object.keys(this.shaderConfigs)) {
+            // Check if the shader to be compiled
+            if (this.shaderConfigs[key].compile) {
+                // Create the shader object
+                this.shaderRegister.push(new Shader(key, this.shaderConfigs[key].vertex, this.shaderConfigs[key].fragment));
+            }
+        }
     }
 
     // Load our renderable objects
@@ -143,10 +162,15 @@ export default class Engine {
 
     // Engine "Game-Loop"
     sceneLoop = (timestamp) => {
-        let deltaTime = (timestamp - this.oldTime) / 1000;
+        // Calculate the delta between the current frame and the previous frame -> we use this for smoothing transformations and animations
+        let deltaTime = (timestamp - this.previousFrameTime) / 1000;
+        // Update the scene -> update the logic of the world, do transformations, animations etc.
         this.updateScene(deltaTime);
+        // Draw the scene to the Canvas
         this.renderScene();
-        this.oldTime = timestamp;
+        // Store the current timer ready for the next frames delta calculation
+        this.previousFrameTime = timestamp;
+        // Canvas frame update callback
         window.requestAnimationFrame(this.sceneLoop);
     }
 
