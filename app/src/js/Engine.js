@@ -20,7 +20,7 @@ export default class Engine {
         this.indexOfDraggableObject = 0;
 
         // Delta Time variables
-        this.oldTime = 0;
+        this.previousFrameTime = 0;
 
         // Variables for drag-rotating an object
         this.mouseClickedLeft = false;
@@ -143,10 +143,10 @@ export default class Engine {
 
     // Engine "Game-Loop"
     sceneLoop = (timestamp) => {
-        let deltaTime = (timestamp - this.oldTime) / 1000;
+        let deltaTime = (timestamp - this.previousFrameTime) / 1000;
         this.updateScene(deltaTime);
         this.renderScene();
-        this.oldTime = timestamp;
+        this.previousFrameTime = timestamp;
         window.requestAnimationFrame(this.sceneLoop);
     }
 
