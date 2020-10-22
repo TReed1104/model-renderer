@@ -143,10 +143,15 @@ export default class Engine {
 
     // Engine "Game-Loop"
     sceneLoop = (timestamp) => {
+        // Calculate the delta between the current frame and the previous frame -> we use this for smoothing transformations and animations
         let deltaTime = (timestamp - this.previousFrameTime) / 1000;
+        // Update the scene -> update the logic of the world, do transformations, animations etc.
         this.updateScene(deltaTime);
+        // Draw the scene to the Canvas
         this.renderScene();
+        // Store the current timer ready for the next frames delta calculation
         this.previousFrameTime = timestamp;
+        // Canvas frame update callback
         window.requestAnimationFrame(this.sceneLoop);
     }
 
