@@ -112,9 +112,14 @@ export default class Engine {
 
     // Load the shaders
     loadShaders() {
-        // Create the shader
-        this.shaderRegister.push(new Shader("Default", ShaderDefault.VertexCode, ShaderDefault.FragmentCode));
-        this.shaderRegister.push(new Shader("Textured", ShaderTextured.VertexCode, ShaderTextured.FragmentCode));
+        // Iterate through the shader config list
+        for (let key of Object.keys(this.shaderConfigs)) {
+            // Check if the shader to be compiled
+            if (this.shaderConfigs[key].compile) {
+                // Create the shader object
+                this.shaderRegister.push(new Shader(key, this.shaderConfigs[key].vertex, this.shaderConfigs[key].fragment));
+            }
+        }
     }
 
     // Load our renderable objects
