@@ -36,10 +36,12 @@ export default class Engine {
         // List the Shaders for the engine to load
         this.shaderConfigs = {
             default: {
+                compile: true,
                 vertex: ShaderDefault.VertexCode,
                 fragment: ShaderDefault.FragmentCode
             },
             texturing: {
+                compile: true,
                 vertex: ShaderTextured.VertexCode,
                 fragment: ShaderTextured.FragmentCode
             },
