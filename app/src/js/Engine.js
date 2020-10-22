@@ -33,6 +33,18 @@ export default class Engine {
         canvas.addEventListener("mouseout", this.mouseButtonReleased, false);
         canvas.addEventListener("mousemove", this.mouseMovement, false);
 
+        // List the Shaders for the engine to load
+        this.shaderConfigs = {
+            default: {
+                vertex: ShaderDefault.VertexCode,
+                fragment: ShaderDefault.FragmentCode
+            },
+            texturing: {
+                vertex: ShaderTextured.VertexCode,
+                fragment: ShaderTextured.FragmentCode
+            },
+        }
+
         // The list of the models to load from the content/models folder
         this.modelConfigs = {
             cube: {
