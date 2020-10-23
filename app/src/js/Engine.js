@@ -34,43 +34,6 @@ export default class Engine {
         canvas.addEventListener("mouseup", this.mouseButtonReleased, false);
         canvas.addEventListener("mouseout", this.mouseButtonReleased, false);
         canvas.addEventListener("mousemove", this.mouseMovement, false);
-
-        // List the Shaders for the engine to load
-        this.shaderConfigs = {
-            default: {
-                compile: true,
-                vertex: ShaderDefault.VertexCode,
-                fragment: ShaderDefault.FragmentCode
-            },
-            texturing: {
-                compile: true,
-                vertex: ShaderTextured.VertexCode,
-                fragment: ShaderTextured.FragmentCode
-            },
-        }
-
-        // The list of the models to load from the content/models folder
-        this.modelConfigs = {
-            cube: {
-                load: true,
-                enabled: true,
-                shaderIndex: 1,
-                modelFile: { path: "content/models/cube.obj"},
-                position: [0, 0, 0],
-                rotation: [0, 0, 0],
-                scale: [1, 1, 1],
-            },
-            legoman: {
-                load: true,
-                enabled: false,
-                shaderIndex: 1,
-                modelFile: { path: "content/models/legoman.obj" },
-                //materialFile: {path: "content/models/legoman.mtl"},
-                position: [0, 0, 0],
-                rotation: [0, 0, 0],
-                scale: [1, 1, 1],
-            },
-        };
     }
 
     // Mouse movement function
