@@ -14,6 +14,6 @@ var ShaderList = {
         vertex: ShaderTextured.VertexCode,
         fragment: ShaderTextured.FragmentCode
     },
-}
+};
 
 export default ShaderList;
