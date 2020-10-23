@@ -13,7 +13,7 @@ export default class Engine {
         // Registers
         this.shaderRegister = []                // A register of all the shaders
         this.cameraRegister = []                // A list of all the world cameras
-        this.modelRegister = []      // A register of all the renderable objects
+        this.modelRegister = []                 // A register of all the renderable objects
 
         // Indexers
         this.indexOfMainCamera = 0;
