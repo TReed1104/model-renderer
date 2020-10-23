@@ -78,11 +78,11 @@ export default class Engine {
     // Load the shaders
     loadShaders() {
         // Iterate through the shader config list
-        for (let key of Object.keys(this.shaderConfigs)) {
+        for (let key of Object.keys(ConfigShaders)) {
             // Check if the shader to be compiled
-            if (this.shaderConfigs[key].compile) {
+            if (ConfigShaders[key].compile) {
                 // Create the shader object
-                this.shaderRegister.push(new Shader(key, this.shaderConfigs[key].vertex, this.shaderConfigs[key].fragment));
+                this.shaderRegister.push(new Shader(key, ConfigShaders[key].vertex, ConfigShaders[key].fragment));
             }
         }
     }
@@ -90,11 +90,10 @@ export default class Engine {
     // Load our renderable objects
     loadObjects() {
         // Load each model in the list
-        for (let key of Object.keys(this.modelConfigs)) {
+        for (let key of Object.keys(ConfigModels)) {
             // Check if the model is to be loaded
-            if (this.modelConfigs[key].load) {
-                let model = this.modelConfigs[key];
-                this.modelRegister.push(new Model(key, model));
+            if (ConfigModels[key].load) {
+                this.modelRegister.push(new Model(key, ConfigModels[key]));
             }
         }
     }
