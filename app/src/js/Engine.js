@@ -6,9 +6,9 @@ import Shader from "./Shader.js";
 import Model from "./Model.js";
 import Camera from "./Camera.js";
 
-// Import the Shaders
-import * as ShaderDefault from "../shaders/Default.js"
-import * as ShaderTextured from "../shaders/Textured.js"
+// Import the Configs
+import ConfigShaders from '../configs/ShaderList.js';
+import ConfigModels from '../configs/ModelList.js';
 
 export default class Engine {
     constructor() {
