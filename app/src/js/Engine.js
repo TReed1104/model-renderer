@@ -1,8 +1,10 @@
-// Imports
-import { canvas, webgl } from "./Webgl.js"
+// Import WebGL
+import { canvas, webgl } from "./Webgl.js";
+
+// Import the Engine Classes
 import Shader from "./Shader.js";
-import Model from "./Model.js"
-import Camera from "./Camera.js"
+import Model from "./Model.js";
+import Camera from "./Camera.js";
 
 // Import the Shaders
 import * as ShaderDefault from "../shaders/Default.js"
