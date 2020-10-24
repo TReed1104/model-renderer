@@ -1,5 +1,5 @@
 // Import WebGL
-import { canvas, webgl } from "./Webgl.js";
+import { canvas, webgl } from "./Core.js";
 
 // Import the Engine Classes
 import Shader from "./Shader.js";

@@ -1,4 +1,4 @@
-import { canvas } from "./Webgl.js"
+import { canvas } from "./Core.js";
 import matrix4 from "./Matrix4.js"
 import ExtendedMaths from "./ExtendedMaths.js"
 

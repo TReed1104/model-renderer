@@ -1,10 +1,10 @@
 // Imports
-import Engine from "./Engine.js"
+import { engine } from "./Core.js";
 
 // Main function
 function main() {
-    var app = new Engine();
-    app.run();
+    // Start the webgl engine
+    engine.run();
 }
 
 // Execute the app

@@ -1,5 +1,5 @@
 // Imports
-import { webgl } from "./Webgl.js"
+import { webgl } from "./Core.js";
 
 export default class Shader {
     constructor(id, vertexShaderSourceCode, fragmentShaderSourceCode) {
