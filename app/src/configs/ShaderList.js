@@ -1,6 +1,6 @@
 // Import the Shaders
 import * as ShaderDefault from "../shaders/Default.js";
-import * as ShaderTextured from "../shaders/Textured.js";
+import * as ShaderTexturing from "../shaders/Texturing.js";
 
 // The list of shaders for the Engine to load and compile
 var ShaderList = {
@@ -11,8 +11,8 @@ var ShaderList = {
     },
     texturing: {
         compile: true,
-        vertex: ShaderTextured.VertexCode,
-        fragment: ShaderTextured.FragmentCode
+        vertex: ShaderTexturing.VertexCode,
+        fragment: ShaderTexturing.FragmentCode
     },
 };
 
