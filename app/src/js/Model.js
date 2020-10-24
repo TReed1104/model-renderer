@@ -1,4 +1,4 @@
-import { canvas, webgl, engine } from "./Core.js";
+import { webgl } from "./Core.js";
 import matrix4 from "./Matrix4.js"
 import Mesh from "./Mesh.js"
 import { OBJ as objLoader } from "webgl-obj-loader"

@@ -1,5 +1,5 @@
 // Imports
-import { canvas, webgl, engine } from "./Core.js";
+import { engine } from "./Core.js";
 
 // Main function
 function main() {
