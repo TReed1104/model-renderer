@@ -158,7 +158,6 @@ export default class Engine {
     }
 
     getIndexOfCamera(cameraID) {
-        let index = null;
-        return index;
+        return this.cameraRegister.findIndex((camera) => camera.id == cameraID);
     }
 }
