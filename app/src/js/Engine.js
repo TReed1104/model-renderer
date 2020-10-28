@@ -150,8 +150,7 @@ export default class Engine {
     }
 
     getIndexOfShader(shaderID) {
-        let index = null;
-        return index;
+        return this.shaderRegister.findIndex((shader) => shader.id == shaderID);
     }
 
     getIndexOfModel(modelID) {
