@@ -154,4 +154,9 @@ export default class Engine {
         return index;
     }
 
+    getIndexOfModel(modelID) {
+        let index = null;
+        return index;
+    }
+
 }
