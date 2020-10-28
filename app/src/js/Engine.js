@@ -154,8 +154,7 @@ export default class Engine {
     }
 
     getIndexOfModel(modelID) {
-        let index = null;
-        return index;
+        return this.modelRegister.findIndex((model) => model.id == modelID);
     }
 
     getIndexOfCamera(cameraID) {
