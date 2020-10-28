@@ -159,4 +159,8 @@ export default class Engine {
         return index;
     }
 
+    getIndexOfCamera(cameraID) {
+        let index = null;
+        return index;
+    }
 }
