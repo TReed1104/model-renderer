@@ -148,4 +148,10 @@ export default class Engine {
         // Start the run-time loop
         window.requestAnimationFrame(this.sceneLoop);
     }
+
+    getIndexOfShader(shaderID) {
+        let index = null;
+        return index;
+    }
+
 }
