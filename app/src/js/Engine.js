@@ -155,10 +155,12 @@ export default class Engine {
     }
 
     getIndexOfModel(modelID) {
+        // Get the index of the loaded model with the specified ID
         return this.modelRegister.findIndex((model) => model.id == modelID);
     }
 
     getIndexOfCamera(cameraID) {
+        // Get the index of the loaded camera with the specified ID
         return this.cameraRegister.findIndex((camera) => camera.id == cameraID);
     }
 }
