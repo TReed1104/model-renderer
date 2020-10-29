@@ -150,6 +150,7 @@ export default class Engine {
     }
 
     getIndexOfShader(shaderID) {
+        // Get the index of the loaded shader with the specified ID
         return this.shaderRegister.findIndex((shader) => shader.id == shaderID);
     }
 
