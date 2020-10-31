@@ -9,6 +9,7 @@ import Camera from "./Camera.js";
 // Import the Configs
 import ConfigShaders from '../configs/ShaderList.js';
 import ConfigModels from '../configs/ModelList.js';
+import ConfigLights from '../configs/LightList.js'
 
 export default class Engine {
     constructor() {
