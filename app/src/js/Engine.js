@@ -9,6 +9,7 @@ import Camera from "./Camera.js";
 // Import the Configs
 import ConfigShaders from '../configs/ShaderList.js';
 import ConfigModels from '../configs/ModelList.js';
+import ConfigLights from '../configs/LightList.js'
 
 export default class Engine {
     constructor() {
@@ -98,6 +99,17 @@ export default class Engine {
         }
     }
 
+    // Load the lights for the engine scenes
+    loadLights() {
+        // Load each light in the list
+        for (let key of Object.keys(ConfigLights)) {
+            // Check if the model is to be loaded
+            if (ConfigLights[key].load) {
+                // TODO: LightRegister create light
+            }
+        }
+    }
+
     // Engine Update
     updateScene(deltaTime) {
         // Update all the cameras
@@ -144,6 +156,7 @@ export default class Engine {
         this.loadShaders();
         this.loadCameras();
         this.loadObjects();
+        this.loadLights();
 
         // Start the run-time loop
         window.requestAnimationFrame(this.sceneLoop);
