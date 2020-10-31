@@ -149,6 +149,7 @@ export default class Engine {
         this.loadShaders();
         this.loadCameras();
         this.loadObjects();
+        this.loadLights();
 
         // Start the run-time loop
         window.requestAnimationFrame(this.sceneLoop);
