@@ -99,6 +99,10 @@ export default class Engine {
         }
     }
 
+    // Load the lights for the engine scenes
+    loadLights() {
+    }
+
     // Engine Update
     updateScene(deltaTime) {
         // Update all the cameras
