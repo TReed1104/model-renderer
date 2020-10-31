@@ -103,6 +103,10 @@ export default class Engine {
     loadLights() {
         // Load each light in the list
         for (let key of Object.keys(ConfigLights)) {
+            // Check if the model is to be loaded
+            if (ConfigLights[key].load) {
+                // TODO: LightRegister
+            }
         }
     }
 
