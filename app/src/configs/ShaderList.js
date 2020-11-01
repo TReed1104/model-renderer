@@ -5,12 +5,14 @@ import * as ShaderTexturing from "../shaders/Texturing.js";
 // The list of shaders for the Engine to load and compile
 var ShaderList = {
     default: {
-        compile: true,
+        load: true,
+        enabled: true,
         vertex: ShaderDefault.VertexCode,
         fragment: ShaderDefault.FragmentCode
     },
     texturing: {
-        compile: true,
+        load: true,
+        enabled: true,
         vertex: ShaderTexturing.VertexCode,
         fragment: ShaderTexturing.FragmentCode
     },
