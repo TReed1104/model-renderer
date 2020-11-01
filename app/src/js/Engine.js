@@ -81,9 +81,9 @@ export default class Engine {
         // Iterate through the shader config list
         for (let key of Object.keys(ConfigShaders)) {
             // Check if the shader to be compiled
-            if (ConfigShaders[key].compile) {
+            if (ConfigShaders[key].load) {
                 // Create the shader object
-                this.shaderRegister.push(new Shader(key, ConfigShaders[key].vertex, ConfigShaders[key].fragment));
+                this.shaderRegister.push(new Shader(key, ConfigShaders[key]));
             }
         }
     }

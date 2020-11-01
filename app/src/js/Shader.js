@@ -2,13 +2,14 @@
 import { webgl } from "./Core.js";
 
 export default class Shader {
-    constructor(id, vertexShaderSourceCode, fragmentShaderSourceCode) {
+    constructor(id, config) {
         this.id = id;
-        // Cache a copy of the shader code
-        this.vertexShaderCode = vertexShaderSourceCode;
-        this.fragmentShaderCode = fragmentShaderSourceCode;
+        // Parse the config data
+        (config.enabled != undefined) ? this.enabled = config.enabled : this.enabled = false;
+        (config.vertex != undefined) ? this.vertexShaderCode = config.vertex : this.vertexShaderCode = "Invalid Vertex Source Code";
+        (config.fragment != undefined) ? this.fragmentShaderCode = config.fragment : this.fragmentShaderCode = "Invalid Framgnet Source Code";
         // Compile the shader
-        this.program = this.compileShaderProgram(vertexShaderSourceCode, fragmentShaderSourceCode);
+        this.program = this.compileShaderProgram(this.vertexShaderCode, this.fragmentShaderCode);
     }
 
     compileShaderProgram(vertexSource, fragmentSource) {
