@@ -180,6 +180,7 @@ export default class Engine {
     }
 
     getIndexOfLight(lightID) {
-        return -1;
+        // Get the index of the loaded light with the specified ID
+        return this.lightRegister.findIndex((light) => light.id == lightID);
     }
 }
