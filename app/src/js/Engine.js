@@ -107,7 +107,7 @@ export default class Engine {
         for (let key of Object.keys(ConfigLights)) {
             // Check if the model is to be loaded
             if (ConfigLights[key].load) {
-                // TODO: LightRegister create light
+                this.lightRegister.push(new Light(key, ConfigLights[key]));
             }
         }
     }
