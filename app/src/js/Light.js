@@ -10,4 +10,8 @@ export default class Light {
         (config.position != undefined) ? this.position = config.position : this.position = [0, 0, 0];
         (config.colour != undefined) ? this.colour = config.colour : this.colour = [1, 1, 1];
     }
+
+    update(deltaTime) {
+        // Light Logic here
+    }
 }
