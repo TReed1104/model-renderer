@@ -178,4 +178,8 @@ export default class Engine {
         // Get the index of the loaded camera with the specified ID
         return this.cameraRegister.findIndex((camera) => camera.id == cameraID);
     }
+
+    getIndexOfLight(lightID) {
+        return -1;
+    }
 }
