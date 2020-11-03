@@ -9,3 +9,12 @@ yarn
 yarn run dev
 ```
 
+## Run - Development Mode - Localhost only
+Accessible on Localhost:8080
+
+```bash
+cd app
+yarn
+yarn run dev-local
+```
+
