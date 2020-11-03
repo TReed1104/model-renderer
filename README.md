@@ -1,2 +1,3 @@
-# model-renderer
-Learning Web-GL - render figurines from their model files
+# Model Renderer
+A WebGL engine for rendering .OBJ model files in 3D space.
+
