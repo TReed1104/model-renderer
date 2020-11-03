@@ -18,3 +18,12 @@ yarn
 yarn run dev-local
 ```
 
+## Build
+Exports to app/dist
+
+```bash
+cd app
+yarn
+yarn run build
+```
+
