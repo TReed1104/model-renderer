@@ -27,3 +27,11 @@ yarn
 yarn run build
 ```
 
+## Docker Deploy - Production
+Deploys to Docker via Docker-compose
+
+```bash
+sudo chmod +x deployment/prod.sh
+./deployment/prod.sh
+```
+
