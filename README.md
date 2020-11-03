@@ -30,8 +30,13 @@ yarn run build
 ## Docker Deploy - Production
 Deploys to Docker via Docker-compose
 
+### Scripted
 ```bash
 sudo chmod +x deployment/prod.sh
 ./deployment/prod.sh
 ```
 
+### Manual
+```bash
+docker-compose -p model-renderer -f docker-compose.yml up -d --build --remove-orphans
+```
