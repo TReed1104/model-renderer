@@ -104,12 +104,11 @@ export default class Engine {
     // Load the lights for the engine scenes
     loadLights() {
         // Load each light in the list
-        for (let key of Object.keys(ConfigLights)) {
-            // Check if the model is to be loaded
-            if (ConfigLights[key].load) {
-                this.lightRegister.push(new Light(key, ConfigLights[key]));
+        ConfigLights.forEach(config => {
+            if (config.load) {
+                this.lightRegister.push(new Light(config));
             }
-        }
+        });
     }
 
     // Engine Update
