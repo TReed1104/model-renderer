@@ -2,8 +2,10 @@
 var LightList = {
     light: {
         load: true,
-        position: [0, 0, 0]
-    }
+        type: "point",
+        position: [0, 0, 0],
+        colour: [1, 1, 1]
+    },
 };
 
 export default LightList;
