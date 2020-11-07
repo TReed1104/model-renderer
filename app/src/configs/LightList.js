@@ -1,6 +1,6 @@
 // The list of Lights for the Engine to load
 var LightList = {
-    light: {
+    point: {
         load: true,
         type: "point",
         position: [0, 0, 0],
