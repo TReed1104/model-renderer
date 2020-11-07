@@ -6,6 +6,18 @@ var LightList = {
         position: [0, 0, 0],
         colour: [1, 1, 1]
     },
+    directional: {
+        load: true,
+        type: "directional",
+        position: [0, 0, 0],
+        colour: [1, 1, 1]
+    },
+    spotlight: {
+        load: true,
+        type: "spotlight",
+        position: [0, 0, 0],
+        colour: [1, 1, 1]
+    }
 };
 
 export default LightList;
