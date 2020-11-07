@@ -1,7 +1,8 @@
 // The list of Lights for the Engine to load
-var LightList = {
-    point: {
+var LightList = [
+    {
         // Metadata
+        id: "Test Light",
         load: true,
         type: "point",
         // Transformations
@@ -15,6 +16,6 @@ var LightList = {
         linear: 0.22,
         quadratic: 0.20
     }
-};
+];
 
 export default LightList;
