@@ -1,9 +1,11 @@
 import { webgl } from "./Core.js";
 
 export default class Light {
-    constructor(config) {
+    constructor(id, config) {
+        // Set the unique id for the light
+        this.id = id;
+
         // Parse the config object passed to the constructor
-        (config.id != undefined) ? this.id = config.id : this.type = "Not Set";
         (config.type != undefined && (config.type == "point" || config.type == "directional" || config.type == "spotlight")) ? this.type = config.type : this.type = "Invalid Type";
         (config.position != undefined) ? this.position = config.position : this.position = [0, 0, 0];
         // Lighting colour attributes
