@@ -179,10 +179,6 @@ export default class Engine {
     }
 
     getIndexOfLight(lightID) {
-        // Check the call is not using the default value
-        if (lightID == "Not Set") {
-            return -1;
-        }
         // Get the index of the loaded light with the specified ID
         return this.lightRegister.findIndex((light) => light.id == lightID);
     }
