@@ -10,15 +10,15 @@ import Light from "./Light.js";
 // Import the Configs
 import ConfigShaders from '../configs/ShaderList.js';
 import ConfigModels from '../configs/ModelList.js';
-import ConfigLights from '../configs/LightList.js'
+import ConfigLights from '../configs/LightList.js';
 
 export default class Engine {
     constructor() {
         // Registers
-        this.shaderRegister = []                // A register of all the shaders
-        this.cameraRegister = []                // A list of all the world cameras
-        this.modelRegister = []                 // A register of all the renderable objects
-        this.lightRegister = []                 // A register of all the scene lights
+        this.shaderRegister = [];               // A register of all the shaders
+        this.cameraRegister = [];               // A list of all the world cameras
+        this.modelRegister = [];                // A register of all the renderable objects
+        this.lightRegister = [];                // A register of all the scene lights
 
         // Indexers
         this.indexOfMainCamera = 0;
