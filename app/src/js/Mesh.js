@@ -19,8 +19,8 @@ export default class Mesh {
         this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours, this.uvs, this.normals);
 
         // Setup the transformation data
-        this.position = position
-        this.rotation = rotation
+        this.position = position;
+        this.rotation = rotation;
         this.scale = scale
 
         // Setup the model matrix
@@ -38,7 +38,7 @@ export default class Mesh {
         // Check we have vertices and indices for drawing an object
         if (vertices == undefined || vertices == null || indices == undefined || indices == null) {
             webgl.bindVertexArray(null);
-            return null
+            return null;
         }
         // Check if the Vertex data was supplied
         if (vertices != undefined || vertices != null) {
@@ -99,7 +99,7 @@ export default class Mesh {
         }
         // Unbind the VAO
         webgl.bindVertexArray(null);
-        return vertexArrayObject
+        return vertexArrayObject;
     }
 
     update(deltaTime, modelMatrix) {
