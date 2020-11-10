@@ -91,7 +91,7 @@ export default class Engine {
     }
 
     // Load our renderable objects
-    loadObjects() {
+    loadModels() {
         // Load each model in the list
         for (let key of Object.keys(ConfigModels)) {
             // Check if the model is to be loaded
@@ -156,7 +156,7 @@ export default class Engine {
         // Call the load functions
         this.loadShaders();
         this.loadCameras();
-        this.loadObjects();
+        this.loadModels();
         this.loadLights();
 
         // Start the run-time loop
