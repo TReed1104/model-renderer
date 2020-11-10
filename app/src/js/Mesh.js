@@ -1,6 +1,6 @@
 import { webgl } from "./Core.js";
-import matrix4 from "./Matrix4.js"
-import Texture from "./Texture.js"
+import matrix4 from "./Matrix4.js";
+import Texture from "./Texture.js";
 
 export default class Mesh {
     constructor(vertices,indices, colour, uvs, normals, position, rotation, scale, textureFileLocation) {
