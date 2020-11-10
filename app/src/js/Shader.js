@@ -33,7 +33,7 @@ export default class Shader {
         webgl.attachShader(shaderProgram, fragmentShader);
         webgl.linkProgram(shaderProgram);
         // Return the created shaderProgram
-        return shaderProgram
+        return shaderProgram;
     }
 
     enable() {
