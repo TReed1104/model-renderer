@@ -6,4 +6,4 @@ var ExtendedMaths = {
         return d * Math.PI / 180;
     }
 }
-export default ExtendedMaths
+export default ExtendedMaths;
