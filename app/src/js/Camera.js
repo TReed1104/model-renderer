@@ -144,6 +144,6 @@ export default class Camera {
 
     adjustFieldOfView(newFieldOfViewAngle) {
         this.fieldOfViewAngle = newFieldOfViewAngle;
-        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle)
+        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle);
     }
 }
