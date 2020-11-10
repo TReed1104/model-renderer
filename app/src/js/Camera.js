@@ -1,6 +1,6 @@
 import { canvas } from "./Core.js";
-import matrix4 from "./Matrix4.js"
-import ExtendedMaths from "./ExtendedMaths.js"
+import matrix4 from "./Matrix4.js";
+import ExtendedMaths from "./ExtendedMaths.js";
 
 export default class Camera {
     constructor(id, position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
