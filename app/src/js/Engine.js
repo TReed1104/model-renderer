@@ -160,6 +160,7 @@ export default class Engine {
         // Call the load functions
         this.loadShaders();
         this.loadCameras();
+        this.loadTextures();
         this.loadModels();
         this.loadLights();
 
