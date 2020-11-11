@@ -73,11 +73,6 @@ export default class Engine {
         this.oldMouseYPos = event.pageY;
     };
 
-    loadCameras() {
-        // Create the main Camera
-        this.cameraRegister.push(new Camera("Main Camera", [0, 2, 5], [0, 0, 0], [0, 1, 0], 90, 1, 100));
-    }
-
     // Load the shaders
     loadShaders() {
         // Iterate through the shader config list
@@ -88,6 +83,12 @@ export default class Engine {
                 this.shaderRegister.push(new Shader(key, ConfigShaders[key]));
             }
         }
+    }
+
+    // Create the cameras to be used by the engine
+    loadCameras() {
+        // Create the main Camera
+        this.cameraRegister.push(new Camera("Main Camera", [0, 2, 5], [0, 0, 0], [0, 1, 0], 90, 1, 100));
     }
 
     // Load the defined textures
