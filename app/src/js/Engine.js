@@ -90,6 +90,10 @@ export default class Engine {
         }
     }
 
+    // Load the defined textures
+    loadTextures() {
+    }
+
     // Load our renderable objects
     loadModels() {
         // Load each model in the list
