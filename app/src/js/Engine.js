@@ -94,6 +94,9 @@ export default class Engine {
 
     // Load the defined textures
     loadTextures() {
+        // Load each texture in the config list
+        for (let key of Object.keys(ConfigTextures)) {
+        }
     }
 
     // Load our renderable objects
