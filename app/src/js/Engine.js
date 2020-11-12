@@ -96,6 +96,9 @@ export default class Engine {
     loadTextures() {
         // Load each texture in the config list
         for (let key of Object.keys(ConfigTextures)) {
+            // Check if the texture is to be loaded
+            if (ConfigTextures[key].load) {
+            }
         }
     }
 
