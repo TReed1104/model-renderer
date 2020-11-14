@@ -100,6 +100,7 @@ export default class Engine {
         for (let key of Object.keys(ConfigTextures)) {
             // Check if the texture is to be loaded
             if (ConfigTextures[key].load) {
+                this.textureRegister.push(new Texture(key, ConfigTextures[key].path));
             }
         }
     }
