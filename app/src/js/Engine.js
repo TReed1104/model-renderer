@@ -103,8 +103,6 @@ export default class Engine {
                 this.textureRegister.push(new Texture(key, ConfigTextures[key].path));
             }
         }
-        // Debugging test
-        console.log(this.textureRegister);
     }
 
     // Load our renderable objects
