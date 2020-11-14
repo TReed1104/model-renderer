@@ -3,6 +3,7 @@ import { canvas, webgl } from "./Core.js";
 
 // Import the Engine Classes
 import Shader from "./Shader.js";
+import Texture from "./Texture.js";
 import Model from "./Model.js";
 import Camera from "./Camera.js";
 import Light from "./Light.js";
