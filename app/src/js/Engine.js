@@ -3,6 +3,7 @@ import { canvas, webgl } from "./Core.js";
 
 // Import the Engine Classes
 import Shader from "./Shader.js";
+import Texture from "./Texture.js";
 import Model from "./Model.js";
 import Camera from "./Camera.js";
 import Light from "./Light.js";
@@ -18,6 +19,7 @@ export default class Engine {
         // Registers
         this.shaderRegister = [];               // A register of all the shaders
         this.cameraRegister = [];               // A list of all the world cameras
+        this.textureRegister = [];              // A register of all the loaded textures
         this.modelRegister = [];                // A register of all the renderable objects
         this.lightRegister = [];                // A register of all the scene lights
 
@@ -98,6 +100,7 @@ export default class Engine {
         for (let key of Object.keys(ConfigTextures)) {
             // Check if the texture is to be loaded
             if (ConfigTextures[key].load) {
+                this.textureRegister.push(new Texture(key, ConfigTextures[key].path));
             }
         }
     }
