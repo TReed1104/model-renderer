@@ -3,9 +3,9 @@ var cameraList = {
     main: {
         load: true,
         position: [0, 2, 5],
-        lookat: [0, 0, 0],
+        lookAt: [0, 0, 0],
         up: [0, 1, 0],
-        fieldOfView: 90,
+        fieldOfViewAngle: 90,
         nearZ: 1,
         farZ: 100
     }
