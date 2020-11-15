@@ -3,7 +3,7 @@ import matrix4 from "./Matrix4.js";
 import ExtendedMaths from "./ExtendedMaths.js";
 
 export default class Camera {
-    constructor(id, position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
+    constructor(id, config, position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
         // Set the object variables
         this.id = id;
         this.position = position;
