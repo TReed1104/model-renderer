@@ -6,13 +6,14 @@ export default class Camera {
     constructor(id, config, position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
         // Set the object variables
         this.id = id;
-        this.position = position;
-        this.lookAt = lookAt;
-        this.up = up;
-        this.fieldOfViewAngle = fieldOfViewAngle;
-        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(fieldOfViewAngle);
-        this.nearZ = nearZ;
-        this.farZ = farZ;
+
+        (config.position != undefined) ? this.position = config.position : this.position = [0, 0, 0];
+        (config.lookAt != undefined) ? this.lookAt = config.lookAt : this.lookAt = [0, 0, 0];
+        (config.up != undefined) ? this.up = config.up : this.up = [0, 1, 0];
+        (config.fieldOfViewAngle != undefined) ? this.fieldOfViewAngle = config.fieldOfViewAngle : this.fieldOfViewAngle = 90;
+        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle);
+        (config.nearZ != undefined) ? this.nearZ = config.nearZ : this.nearZ = 1;
+        (config.farZ != undefined) ? this.farZ = config.farZ : this.farZ = 100;
 
         // Cache the base fields of the camera -> allows easy "resetting"
         this.base_Position = position;
