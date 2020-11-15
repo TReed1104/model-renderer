@@ -1,6 +1,7 @@
 // Template for a list module for assets
 var cameraList = {
     main: {
+        load: true,
         position: [0, 2, 5],
         lookat: [0, 0, 0],
         up: [0, 1, 0],
