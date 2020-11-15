@@ -10,6 +10,7 @@ import Light from "./Light.js";
 
 // Import the Configs
 import ConfigShaders from '../configs/ShaderList.js';
+import ConfigCameras from '../configs/CameraList.js';
 import ConfigTextures from '../configs/TextureList.js';
 import ConfigModels from '../configs/ModelList.js';
 import ConfigLights from '../configs/LightList.js';
