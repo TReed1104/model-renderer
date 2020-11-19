@@ -3,25 +3,26 @@ import matrix4 from "./Matrix4.js";
 import ExtendedMaths from "./ExtendedMaths.js";
 
 export default class Camera {
-    constructor(id, position, lookAt, up, fieldOfViewAngle, nearZ, farZ) {
+    constructor(id, config) {
         // Set the object variables
         this.id = id;
-        this.position = position;
-        this.lookAt = lookAt;
-        this.up = up;
-        this.fieldOfViewAngle = fieldOfViewAngle;
-        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(fieldOfViewAngle);
-        this.nearZ = nearZ;
-        this.farZ = farZ;
+
+        (config.position != undefined) ? this.position = config.position : this.position = [0, 0, 0];
+        (config.lookAt != undefined) ? this.lookAt = config.lookAt : this.lookAt = [0, 0, 0];
+        (config.up != undefined) ? this.up = config.up : this.up = [0, 1, 0];
+        (config.fieldOfViewAngle != undefined) ? this.fieldOfViewAngle = config.fieldOfViewAngle : this.fieldOfViewAngle = 90;
+        this.fieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle);
+        (config.nearZ != undefined) ? this.nearZ = config.nearZ : this.nearZ = 1;
+        (config.farZ != undefined) ? this.farZ = config.farZ : this.farZ = 100;
 
         // Cache the base fields of the camera -> allows easy "resetting"
-        this.base_Position = position;
-        this.base_LookAt = lookAt;
-        this.base_Up = up;
-        this.base_FieldOfViewAngle = fieldOfViewAngle;
-        this.base_FieldOfViewRadians = ExtendedMaths.degreesToRadians(fieldOfViewAngle);
-        this.base_NearZ = nearZ;
-        this.base_FarZ = farZ;
+        this.base_Position = this.position;
+        this.base_LookAt = this.lookAt;
+        this.base_Up = this.up;
+        this.base_FieldOfViewAngle = this.fieldOfViewAngle;
+        this.base_FieldOfViewRadians = ExtendedMaths.degreesToRadians(this.fieldOfViewAngle);
+        this.base_NearZ = this.nearZ;
+        this.base_FarZ = this.farZ;
 
         // Setup the camera matrices
         this.projectionMatrix = matrix4.perspective(this.fieldOfViewRadians, canvas.width / canvas.height, this.nearZ, this.farZ);

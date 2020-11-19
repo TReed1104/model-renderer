@@ -3,12 +3,14 @@ import { canvas, webgl } from "./Core.js";
 
 // Import the Engine Classes
 import Shader from "./Shader.js";
-import Model from "./Model.js";
 import Camera from "./Camera.js";
+import Texture from "./Texture.js";
+import Model from "./Model.js";
 import Light from "./Light.js";
 
 // Import the Configs
 import ConfigShaders from '../configs/ShaderList.js';
+import ConfigCameras from '../configs/CameraList.js';
 import ConfigTextures from '../configs/TextureList.js';
 import ConfigModels from '../configs/ModelList.js';
 import ConfigLights from '../configs/LightList.js';
@@ -18,6 +20,7 @@ export default class Engine {
         // Registers
         this.shaderRegister = [];               // A register of all the shaders
         this.cameraRegister = [];               // A list of all the world cameras
+        this.textureRegister = [];              // A register of all the loaded textures
         this.modelRegister = [];                // A register of all the renderable objects
         this.lightRegister = [];                // A register of all the scene lights
 
@@ -88,8 +91,12 @@ export default class Engine {
 
     // Create the cameras to be used by the engine
     loadCameras() {
-        // Create the main Camera
-        this.cameraRegister.push(new Camera("Main Camera", [0, 2, 5], [0, 0, 0], [0, 1, 0], 90, 1, 100));
+        // Load each Camera in the config list
+        for (let key of Object.keys(ConfigCameras)) {
+            if (ConfigCameras[key].load) {
+                this.cameraRegister.push(new Camera(key, ConfigCameras[key]));
+            }
+        }
     }
 
     // Load the defined textures
@@ -98,6 +105,7 @@ export default class Engine {
         for (let key of Object.keys(ConfigTextures)) {
             // Check if the texture is to be loaded
             if (ConfigTextures[key].load) {
+                this.textureRegister.push(new Texture(key, ConfigTextures[key].path));
             }
         }
     }
