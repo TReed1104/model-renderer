@@ -32,10 +32,17 @@ module.exports = {
             template: 'src/index.html',
             inject: true
         }),
-        new CopyWebpackPlugin([{
-            from: resolve('content'),
-            to: resolve('dist/content'),
-            toType: 'dir'
-        }])
+        new CopyWebpackPlugin(
+            {
+                patterns: [
+                    {
+                        from: resolve('content'),
+                        to: resolve('dist/content'),
+                        toType: 'dir',
+                        noErrorOnMissing: true
+                    }
+                ]
+            }
+        )
     ]
 }
