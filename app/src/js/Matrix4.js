@@ -1,9 +1,9 @@
 var matrix4 = {
-    create: function(value) {
+    create: function (value) {
         var newMatrix = [
-            value, 0, 0, 0, 
-            0, value, 0, 0, 
-            0, 0, value, 0, 
+            value, 0, 0, 0,
+            0, value, 0, 0,
+            0, 0, value, 0,
             0, 0, 0, value
         ];
         return newMatrix;
@@ -25,21 +25,21 @@ var matrix4 = {
         a[2] * b[0] - a[0] * b[2],
         a[0] * b[1] - a[1] * b[0]];
     },
-    lookAt: function(cameraPosition, target, up) {
+    lookAt: function (cameraPosition, target, up) {
         var zAxis = matrix4.normalise(matrix4.subtractVectors(cameraPosition, target));
         var xAxis = matrix4.normalise(matrix4.cross(up, zAxis));
         var yAxis = matrix4.normalise(matrix4.cross(zAxis, xAxis));
-    
+
         return [
-           xAxis[0], xAxis[1], xAxis[2], 0,
-           yAxis[0], yAxis[1], yAxis[2], 0,
-           zAxis[0], zAxis[1], zAxis[2], 0,
-           cameraPosition[0],
-           cameraPosition[1],
-           cameraPosition[2],
-           1,
+            xAxis[0], xAxis[1], xAxis[2], 0,
+            yAxis[0], yAxis[1], yAxis[2], 0,
+            zAxis[0], zAxis[1], zAxis[2], 0,
+            cameraPosition[0],
+            cameraPosition[1],
+            cameraPosition[2],
+            1,
         ];
-      },
+    },
     perspective: function (angle, aspect, zMin, zMax) {
         var f = Math.tan(Math.PI * 0.5 - 0.5 * angle);
         var rangeInv = 1.0 / (zMin - zMax);
@@ -182,7 +182,7 @@ var matrix4 = {
         return matrix4.multiply(m, matrix4.zRotation(angleInRadians));
     },
 
-    rotate: function(m, rotation) {
+    rotate: function (m, rotation) {
         let rotationMatrixX = matrix4.xRotate(m, rotation[0]);
         let rotationMatrixY = matrix4.yRotate(rotationMatrixX, rotation[1]);
         let rotationMatrixZ = matrix4.zRotate(rotationMatrixY, rotation[2]);
