@@ -189,14 +189,14 @@ export default class Engine {
         return this.shaderRegister.findIndex((shader) => shader.id == shaderID);
     }
 
-    getIndexOfModel(modelID) {
-        // Get the index of the loaded model with the specified ID
-        return this.modelRegister.findIndex((model) => model.id == modelID);
-    }
-
     getIndexOfCamera(cameraID) {
         // Get the index of the loaded camera with the specified ID
         return this.cameraRegister.findIndex((camera) => camera.id == cameraID);
+    }
+
+    getIndexOfModel(modelID) {
+        // Get the index of the loaded model with the specified ID
+        return this.modelRegister.findIndex((model) => model.id == modelID);
     }
 
     getIndexOfLight(lightID) {
