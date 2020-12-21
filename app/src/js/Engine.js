@@ -194,6 +194,9 @@ export default class Engine {
         return this.cameraRegister.findIndex((camera) => camera.id == cameraID);
     }
 
+    getIndexOfTexture() {
+    }
+
     getIndexOfModel(modelID) {
         // Get the index of the loaded model with the specified ID
         return this.modelRegister.findIndex((model) => model.id == modelID);
