@@ -194,7 +194,7 @@ export default class Engine {
         return this.cameraRegister.findIndex((camera) => camera.id == cameraID);
     }
 
-    getIndexOfTexture() {
+    getIndexOfTexture(textureID) {
     }
 
     getIndexOfModel(modelID) {
