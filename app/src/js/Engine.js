@@ -195,6 +195,8 @@ export default class Engine {
     }
 
     getIndexOfTexture(textureID) {
+        // Get the index of the loaded texture with the specified ID
+        return this.textureRegister.findIndex((texture) => texture.id == textureID);
     }
 
     getIndexOfModel(modelID) {
