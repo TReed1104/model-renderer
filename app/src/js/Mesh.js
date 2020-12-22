@@ -13,7 +13,8 @@ export default class Mesh {
 
         // Texturing
         this.isObjectUVMapped = false;
-        this.texture = new Texture(textureFileLocation, textureFileLocation);
+        this.texture = texture;
+        //this.texture = new Texture(textureFileLocation, textureFileLocation);
 
         // Generate the Vertex array object
         this.vertexArray = this.generateVertexArray(this.vertices, this.indices, this.colours, this.uvs, this.normals);
