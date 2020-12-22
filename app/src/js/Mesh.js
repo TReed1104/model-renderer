@@ -3,7 +3,7 @@ import matrix4 from "./Matrix4.js";
 import Texture from "./Texture.js";
 
 export default class Mesh {
-    constructor(vertices,indices, colour, uvs, normals, position, rotation, scale, textureFileLocation) {
+    constructor(vertices,indices, colour, uvs, normals, position, rotation, scale, texture) {
         // Cache the object data
         this.vertices = vertices;
         this.indices = indices;
