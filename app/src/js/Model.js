@@ -41,6 +41,9 @@ export default class Model {
                     vertexColours.push(1);
                 });
 
+                // Get the loaded texture from the engine core - Allows us to map the same texure to multiple surfaces with it only existing once in memory
+                let tempTexture = engine.textureRegister[engine.getIndexOfTexture("cube")];
+
                 // For texturable section of the model, spawn a mesh
                 mesh.indicesPerMaterial.forEach(indices => {
                     this.meshes.push(new Mesh(mesh.vertices, indices, vertexColours, mesh.textures, mesh.normals, [0, 0, 0], [0, 0, 0], [1, 1, 1], "content/textures/cubetexture.png"));
