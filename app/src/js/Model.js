@@ -46,7 +46,7 @@ export default class Model {
 
                 // For texturable section of the model, spawn a mesh
                 mesh.indicesPerMaterial.forEach(indices => {
-                    this.meshes.push(new Mesh(mesh.vertices, indices, vertexColours, mesh.textures, mesh.normals, [0, 0, 0], [0, 0, 0], [1, 1, 1], "content/textures/cubetexture.png"));
+                    this.meshes.push(new Mesh(mesh.vertices, indices, vertexColours, mesh.textures, mesh.normals, [0, 0, 0], [0, 0, 0], [1, 1, 1], tempTexture));
                 });
             }
         });
