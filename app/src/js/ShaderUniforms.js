@@ -1,3 +1,6 @@
+import { webgl } from "./Core.js";
+import Shader from "./Shader.js";
+
 export default class ShaderUniforms {
     constructor(shaderObject) {
         this.id = "Not Set"
