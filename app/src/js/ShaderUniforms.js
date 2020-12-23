@@ -3,7 +3,7 @@ import Shader from "./Shader.js";
 
 export default class ShaderUniforms {
     constructor(id, shaderObject) {
-        this.id = "Not Set"
+        this.id = id;
         this.vertices = -1;
         this.colours = -1;
         this.uvs = -1;
