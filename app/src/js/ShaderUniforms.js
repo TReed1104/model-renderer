@@ -1,4 +1,4 @@
 export default class ShaderUniforms {
-    constructor() {
+    constructor(shaderObject) {
     }
 }
