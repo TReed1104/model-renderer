@@ -4,9 +4,9 @@ import Shader from "./Shader.js";
 export default class ShaderUniforms {
     constructor(id, shaderObject) {
         this.id = id;
-        this.vertices = -1;
-        this.colours = -1;
-        this.uvs = -1;
+        this.vertexPosition = -1;
+        this.vertexColour = -1;
+        this.vertexUV = -1;
         this.modelMatrix = -1;
         this.viewMatrix = -1;
         this.projectionMatrix = -1;
