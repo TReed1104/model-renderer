@@ -12,9 +12,9 @@ export default class ShaderUniforms {
         this.vertexUV = webgl.getUniformLocation(shaderObject.program, "vertexUV");
 
         // MVP Matrix
-        this.modelMatrix = -1;
-        this.viewMatrix = -1;
-        this.projectionMatrix = -1;
+        this.modelMatrix = webgl.getUniformLocation(shaderObject.program, "modelMatrix");
+        this.viewMatrix = webgl.getUniformLocation(shaderObject.program, "viewMatrix");
+        this.projectionMatrix = webgl.getUniformLocation(shaderObject.program, "projectionMatrix");
 
         // Texturing
         this.enableTextures = -1;
