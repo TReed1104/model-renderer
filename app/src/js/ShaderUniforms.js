@@ -17,7 +17,7 @@ export default class ShaderUniforms {
         this.projectionMatrix = webgl.getUniformLocation(shaderObject.program, "projectionMatrix");
 
         // Texturing
-        this.enableTextures = -1;
-        this.textureSampler = -1;
+        this.enableTextures = webgl.getUniformLocation(shaderObject.program, "enableTextures");
+        this.textureSampler = webgl.getUniformLocation(shaderObject.program, "textureSampler");
     }
 }
