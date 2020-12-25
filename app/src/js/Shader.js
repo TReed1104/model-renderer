@@ -1,5 +1,6 @@
 // Imports
 import { webgl } from "./Core.js";
+import ShaderUniforms from "./ShaderUniforms.js"
 
 export default class Shader {
     constructor(id, config) {
