@@ -7,17 +7,17 @@ export default class ShaderUniforms {
         this.id = id;
 
         // Vertex data
-        this.vertexPosition = webgl.getUniformLocation(shaderObject.program, "vertexPosition");
-        this.vertexColour = webgl.getUniformLocation(shaderObject.program, "vertexColour");
-        this.vertexUV = webgl.getUniformLocation(shaderObject.program, "vertexUV");
+        this.vertexPosition = webgl.getUniformLocation(shaderObject, "vertexPosition");
+        this.vertexColour = webgl.getUniformLocation(shaderObject, "vertexColour");
+        this.vertexUV = webgl.getUniformLocation(shaderObject, "vertexUV");
 
         // MVP Matrix
-        this.modelMatrix = webgl.getUniformLocation(shaderObject.program, "modelMatrix");
-        this.viewMatrix = webgl.getUniformLocation(shaderObject.program, "viewMatrix");
-        this.projectionMatrix = webgl.getUniformLocation(shaderObject.program, "projectionMatrix");
+        this.modelMatrix = webgl.getUniformLocation(shaderObject, "modelMatrix");
+        this.viewMatrix = webgl.getUniformLocation(shaderObject, "viewMatrix");
+        this.projectionMatrix = webgl.getUniformLocation(shaderObject, "projectionMatrix");
 
         // Texturing
-        this.enableTextures = webgl.getUniformLocation(shaderObject.program, "enableTextures");
-        this.textureSampler = webgl.getUniformLocation(shaderObject.program, "textureSampler");
+        this.enableTextures = webgl.getUniformLocation(shaderObject, "enableTextures");
+        this.textureSampler = webgl.getUniformLocation(shaderObject, "textureSampler");
     }
 }
