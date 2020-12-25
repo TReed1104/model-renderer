@@ -11,6 +11,9 @@ export default class Shader {
         (config.fragment != undefined) ? this.fragmentShaderCode = config.fragment : this.fragmentShaderCode = "Invalid Framgnet Source Code";
         // Compile the shader
         this.program = this.compileShaderProgram(this.vertexShaderCode, this.fragmentShaderCode);
+        // Set the Shader Locations
+        this.ShaderUniforms = new ShaderUniforms(this.id, this.program);
+        console.log(this.ShaderUniforms);   // Debugging
     }
 
     compileShaderProgram(vertexSource, fragmentSource) {
