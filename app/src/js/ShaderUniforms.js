@@ -7,9 +7,9 @@ export default class ShaderUniforms {
         this.id = id;
 
         // Vertex data
-        this.vertexPosition = webgl.getUniformLocation(shaderObject, "vertexPosition");
-        this.vertexColour = webgl.getUniformLocation(shaderObject, "vertexColour");
-        this.vertexUV = webgl.getUniformLocation(shaderObject, "vertexUV");
+        this.vertexPosition = webgl.getAttribLocation (shaderObject, "vertexPosition");
+        this.vertexColour = webgl.getAttribLocation (shaderObject, "vertexColour");
+        this.vertexUV = webgl.getAttribLocation (shaderObject, "vertexUV");
 
         // MVP Matrix
         this.modelMatrix = webgl.getUniformLocation(shaderObject, "modelMatrix");
